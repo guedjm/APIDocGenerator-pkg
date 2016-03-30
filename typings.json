@@ -1,0 +1,10 @@
+{
+  "name": "oauth2utils",
+  "version": false,
+  "main": "./index.d.ts",
+  "dependencies": {
+  },
+  "ambientDependencies": {
+    "node": "registry:dt/node#4.0.0+20160319033040"
+  }
+}

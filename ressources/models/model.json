@@ -1,0 +1,142 @@
+{
+  "api": {
+    "name": "null",
+    "description": "null",
+    "paragraphs": [
+      {
+        "TITLE": {
+          "text": "lol",
+          "sub": [
+            {
+              "tr": {
+                "text": "lol"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tags": [
+      {
+        "NAME": {
+          "link": "lol"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "TOTO": {
+          "text": "lol",
+          "sub": [
+            {
+              "TITI": {
+                "text": "lol",
+                "url": [
+                  {
+                    "/ping": {
+                      "get": {
+                        "summary": "lol",
+                        "description": "lol",
+                        "params": [
+                          {
+                            "TOTO": {
+                              "description": "lol",
+                              "required": true,
+                              "in": "body",
+                              "type": "sting"
+                            }
+                          }
+                        ],
+                        "responses": [
+                          {
+                            "200": {
+                              "description": "lol",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "errors": [
+                          "error-id"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "/ping": {
+          "get": {
+            "summary": "lol",
+            "description": "lol",
+            "params": [
+              {
+                "TOTO": {
+                  "description": "lol",
+                  "required": true,
+                  "in": "body",
+                  "type": "sting"
+                }
+              }
+            ],
+            "responses": [
+              {
+                "200": {
+                  "description": "lol",
+                  "type": "string"
+                }
+              }
+            ],
+            "errors": [
+              "error-id"
+            ]
+          }
+        }
+      }
+    ],
+    "errors": [
+      {
+        "invalid-requirest": {
+          "status": 400,
+          "code": 1,
+          "message": "Hello",
+          "fix": "fix"
+        }
+      },
+      {
+        "client-auth": {
+          "status": 401,
+          "code": 1,
+          "subcode": 1,
+          "message": "Deg",
+          "fix": "mort"
+        }
+      }
+    ],
+    "objects": [
+      {
+        "Error": {
+          "description": "Error Object",
+          "obj": {
+            "error": {
+              "code": 0,
+              "subcode": 0,
+              "message": ""
+            }
+          }
+        }
+      },
+      {
+        "Access Token Reply": {
+          "description": "reply",
+          "obj": {
+            "acess_token": ""
+          }
+        }
+      }
+    ]
+  }
+}
