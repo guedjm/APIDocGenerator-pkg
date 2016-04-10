@@ -1,6 +1,6 @@
 {
   "name": "template-ts-package",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Template project for creating node.js package with typescript",
   "main": "index.js",
   "typings": "index",
@@ -14,7 +14,9 @@
   "author": "Maxime Guedj",
   "license": "ISC",
   "dependencies": {
-    "is-my-json-valid": "^2.13.1"
+    "is-my-json-valid": "^2.13.1",
+    "markdown": "^0.5.0",
+    "yamljs": "^0.2.7"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

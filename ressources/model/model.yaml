@@ -1,6 +1,6 @@
 api:
-  name:
-  description:
+  name: "Test"
+  description: "This is the description"
   
   paragraphs:
     - TITLE:

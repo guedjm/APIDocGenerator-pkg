@@ -15,7 +15,12 @@
     "listFiles": true
   },
   "files": [
-
+    "./src/index.ts",
+    "./src/lib/APIDocGenerator.ts",
+    "./src/lib/utils/definitionValidator.ts",
+    "./src/lib/utils/yamlParser.ts",
+    "./src/lib/model/changeDescription.ts",
+    "./src/lib/model/changelog.ts",
 
     "./typings/main.d.ts"
   ]

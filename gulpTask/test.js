@@ -15,7 +15,7 @@ gulp.task("pre-test", function () {
 
 gulp.task("exec-test", function () {
   console.log("Executing tests ...");
-  return gulp.src("./test/Test.js")
+  return gulp.src("./test/test.js")
     .pipe(mocha())
     .pipe(istambul.writeReports({
       reporters: [ 'html', 'text', 'text-summary']

@@ -1,14 +1,12 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "$ref": "#/definitions/root",
-  
   "definitions": {
-    
     "root": {
       "type": "object",
       "properties": {
         "api": {
-          "$ref": "#/definitions/api" 
+          "$ref": "#/definitions/api"
         }
       },
       "additionalProperties": false,
@@ -16,12 +14,11 @@
         "api"
       ]
     },
-    
     "api": {
       "type": "object",
       "properties": {
         "name": {
-          "type": "string" 
+          "type": "string"
         },
         "description": {
           "type": "string"
@@ -53,7 +50,7 @@
         "objects": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/object"         
+            "$ref": "#/definitions/object"
           }
         }
       },
@@ -63,7 +60,6 @@
         "description"
       ]
     },
-    
     "paragraph": {
       "type": "object",
       "patternProperties": {
@@ -73,12 +69,11 @@
       },
       "additionalProperties": false
     },
-    
     "paragraph-data": {
       "type": "object",
       "properties": {
         "text": {
-          "type": "string" 
+          "type": "string"
         },
         "sub": {
           "type": "array",
@@ -92,7 +87,6 @@
         "text"
       ]
     },
-    
     "tag": {
       "type": "object",
       "patternProperties": {
@@ -102,29 +96,27 @@
       },
       "additionalProperties": false
     },
-    
-    "tag-data": {  
+    "tag-data": {
       "type": "object",
       "properties": {
         "link": {
           "type": "string"
         }
       },
-        "additionalProperties": false
+      "additionalProperties": false
     },
-      
     "route": {
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z- ]+$": {
-          "$ref": "#/definitions/group-data" },
-        "^\/[a-zA-Z-\/]+$": {
+          "$ref": "#/definitions/group-data"
+        },
+        "^/[a-zA-Z-/]+$": {
           "$ref": "#/definitions/method-type"
-        } 
+        }
       },
       "additionalProperties": false
     },
-    
     "group-data": {
       "type": "object",
       "properties": {
@@ -134,13 +126,13 @@
         "sub": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/group"                
+            "$ref": "#/definitions/group"
           }
         },
         "url": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/url"        
+            "$ref": "#/definitions/url"
           }
         }
       },
@@ -149,7 +141,6 @@
         "text"
       ]
     },
-    
     "group": {
       "type": "object",
       "patternProperties": {
@@ -159,7 +150,6 @@
       },
       "additionalProperties": false
     },
-    
     "method-type": {
       "type": "object",
       "properties": {
@@ -181,7 +171,6 @@
       },
       "additionalProperties": false
     },
-    
     "method": {
       "type": "object",
       "properties": {
@@ -194,19 +183,19 @@
         "params": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/param"        
-          } 
+            "$ref": "#/definitions/param"
+          }
         },
         "responses": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/response"        
+            "$ref": "#/definitions/response"
           }
         },
         "errors": {
           "type": "array",
           "items": {
-            "type": "string" 
+            "type": "string"
           }
         }
       },
@@ -215,7 +204,6 @@
         "summary"
       ]
     },
-    
     "param": {
       "type": "object",
       "patternProperties": {
@@ -225,12 +213,11 @@
       },
       "additionalProperties": false
     },
-    
     "param-data": {
       "type": "object",
       "properties": {
         "description": {
-          "type": "string" 
+          "type": "string"
         },
         "required": {
           "type": "boolean"
@@ -253,7 +240,6 @@
         "type"
       ]
     },
-    
     "response": {
       "type": "object",
       "patternProperties": {
@@ -263,12 +249,11 @@
       },
       "additionalProperties": false
     },
-    
     "response-data": {
       "type": "object",
       "properties": {
         "description": {
-          "type": "string" 
+          "type": "string"
         },
         "type": {
           "type": "string"
@@ -280,32 +265,29 @@
         "type"
       ]
     },
-    
     "url": {
       "type": "object",
       "patternProperties": {
-        "^\/[a-zA-Z-\/]+$": {
+        "^/[a-zA-Z-/]+$": {
           "$ref": "#/definitions/method-type"
         }
       },
       "additionalProperties": false
     },
-    
     "error": {
       "type": "object",
       "patternProperties": {
-          "^[a-zA-Z- ]+$": {
-            "$ref": "#/definitions/error-data"
-          }
+        "^[a-zA-Z- ]+$": {
+          "$ref": "#/definitions/error-data"
+        }
       },
       "additionalProperties": false
     },
-    
     "error-data": {
       "type": "object",
       "properties": {
         "status": {
-          "type": "integer" 
+          "type": "integer"
         },
         "code": {
           "type": "integer"
@@ -327,22 +309,20 @@
         "message"
       ]
     },
-    
     "object": {
       "type": "object",
       "patternProperties": {
-          "^[a-zA-Z- ]+$": {
-            "$ref": "#/definitions/object-data"
-          }
-        },
+        "^[a-zA-Z- ]+$": {
+          "$ref": "#/definitions/object-data"
+        }
+      },
       "additionalProperties": false
     },
-    
     "object-data": {
       "type": "object",
       "properties": {
         "description": {
-          "type": "string" 
+          "type": "string"
         },
         "obj": {
           "type": "object"
