@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0
+
+* Root file and version file are now generated
+
+*guedj_m, Sun Apr 10 2016 20:01:40 GMT-0700 (PDT)*
+
+---
 ## 0.3.0
 
 * Definition is now parsed

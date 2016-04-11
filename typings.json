@@ -4,6 +4,7 @@
   "main": "./index.d.ts",
   "dependencies": {},
   "ambientDependencies": {
+    "jade": "registry:dt/jade#0.0.0+20160316155526",
     "node": "registry:dt/node#4.0.0+20160319033040",
     "yamljs": "registry:dt/yamljs#0.2.3+20160316155526"
   }

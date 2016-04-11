@@ -12,4 +12,7 @@ describe("Testing oauth2-utils", function () {
   const pkg = JSON.parse(fs.readFileSync("./package.json", { encoding: "utf8"}));
   
   apiDocGenerator.load(definition, changelog, pkg.version);
+  
+  fs.writeFileSync("./.version.js", apiDocGenerator.versionFileStr);
+  fs.writeFileSync("./index.html", apiDocGenerator.rootFileStr);
 });
