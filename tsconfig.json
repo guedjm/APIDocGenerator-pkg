@@ -19,8 +19,19 @@
     "./src/lib/APIDocGenerator.ts",
     "./src/lib/utils/definitionValidator.ts",
     "./src/lib/utils/yamlParser.ts",
+    "./src/lib/model/apiDefinition.ts",
     "./src/lib/model/changeDescription.ts",
     "./src/lib/model/changelog.ts",
+    "./src/lib/model/definition/paragraph.ts",
+    "./src/lib/model/definition/tag.ts",
+    "./src/lib/model/definition/IRoute.ts",
+    "./src/lib/model/definition/group.ts",
+    "./src/lib/model/definition/url.ts",
+    "./src/lib/model/definition/method.ts",
+    "./src/lib/model/definition/parameter.ts",
+    "./src/lib/model/definition/response.ts",
+    "./src/lib/model/definition/apiError.ts",
+    "./src/lib/model/definition/apiObject.ts",
 
     "./typings/main.d.ts"
   ]

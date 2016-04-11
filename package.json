@@ -1,6 +1,6 @@
 {
   "name": "template-ts-package",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Template project for creating node.js package with typescript",
   "main": "index.js",
   "typings": "index",

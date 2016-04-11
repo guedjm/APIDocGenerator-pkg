@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+
+* Definition is now parsed
+
+*guedj_m, Sun Apr 10 2016 17:46:43 GMT-0700 (PDT)*
+
+---
 ## 0.2.0
 
 * Add YamlParser

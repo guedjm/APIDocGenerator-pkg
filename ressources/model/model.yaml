@@ -8,10 +8,15 @@ api:
         sub:
           - tr:
               text: lol
+    - deux:
+        text: Dexieme paragraphs
+                 
   
   tags:
     - NAME:
         link: lol
+    - Tag2:
+        link: prout
       
   routes:
     - TOTO:

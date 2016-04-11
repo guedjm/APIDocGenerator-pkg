@@ -14,7 +14,7 @@ export default class DefinitionValidator {
       const result: boolean = validateFunc(defintion);
 
       if (!result) {
-        throw new Error("Invalid API definition: " + validateFunc.errors);
+        throw new Error("Invalid API definition: " + JSON.stringify(validateFunc.errors, undefined, 2));
       }
     }
     catch (e) {

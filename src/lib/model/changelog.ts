@@ -12,6 +12,21 @@ export default class Changelog {
     this.parse(mdText);
   }
 
+  get changes(): ChangeDescription[] {
+    return this._changes;
+  }
+
+  public print(): void {
+    this._changes.forEach(function(elem: ChangeDescription): void {
+      console.log(elem.version + " :");
+      elem.changes.forEach(function(e: string): void {
+        console.log(" o " + e);
+      });
+      console.log("By " + elem.author + " the " + elem.date);
+      console.log("");
+    });
+  }
+
   private parse(mdText: string): void {
     let version: string;
     let changes: string[];
@@ -19,16 +34,25 @@ export default class Changelog {
     let date: string;
     const tree: any = md.parse(mdText);
 
+
     tree.forEach(function(elem: any, i: number, a: any): void {
       if ((i === 0 && elem === "markdown")
         || (elem.length === 3 && elem[0] === "header" && elem[1].level !== undefined && elem[1].level === 1)) {
         version = "";
       }
-      else if (elem.length === 3 && elem[0] === "header" && elem[1].level !== undefined) {
-        version = elem[3];
+      else if (elem.length === 3 && elem[0] === "header" && elem[1].level !== undefined && elem[1].level === 2) {
+        version = elem[2];
       }
-      else if (elem.length === 2 && elem[0] === "bulletlist" && elem[1].length > 1 && elem[1][0] === "listitem") {
-        changes = elem[1].slice(1);
+      else if (elem.length > 1 && elem[0] === "bulletlist") {
+        changes = [];
+        elem.forEach(function(e: any, i: number, a: any): void {
+          if (i !== 0 && (e.length !== 2 || e[0] !== "listitem")) {
+            throw new Error("Invalid changelog file format: " + e[0]);
+          }
+          else if (i !== 0) {
+            changes.push(e[1]);
+          }
+        });
       }
       else if (elem.length === 2 && elem[0] === "para" && elem[1].length === 2 && elem[1][0] === "em") {
         const line: string[] = elem[1][1].split(", ");
@@ -43,9 +67,5 @@ export default class Changelog {
         throw new Error("Invalid changelog file format: " + elem);
       }
     }, this);
-  }
-
-  get changes(): ChangeDescription[] {
-    return this._changes;
   }
 }

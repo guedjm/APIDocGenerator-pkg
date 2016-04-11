@@ -2,6 +2,7 @@
 
 import Changelog from "./model/changelog";
 import YamlParser from "./utils/yamlParser";
+import APIDefintion from "./model/apiDefinition";
 import DefinitionValidator from "./utils/definitionValidator";
 
 /**
@@ -9,15 +10,19 @@ import DefinitionValidator from "./utils/definitionValidator";
  */
 export class APIDocGenerator {
 
-  private _defintion: any;
+  private _defintion: APIDefintion;
   private _changelog: Changelog;
 
   public load(definition: string, changelog: string, version: string): void {
 
-    this._defintion = YamlParser.parse(definition);
+    const def: any = YamlParser.parse(definition);
 
-    DefinitionValidator.validate(this._defintion);
+    DefinitionValidator.validate(def);
+
+
     this._changelog = new Changelog(changelog);
-    console.log(this._changelog);
+    this._defintion = new APIDefintion(def);
+
+    this._defintion.print();
   }
 }
