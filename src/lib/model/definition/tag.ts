@@ -21,6 +21,10 @@ export default class Tag {
     return this._link;
   }
 
+  public getDependenceSymbol(): string[] {
+    return [this._link];
+  }
+
   private parse(tag: any): void {
     let done: boolean = false;
 

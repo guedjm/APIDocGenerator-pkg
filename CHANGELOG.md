@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+
+* Add dependency implementation
+
+*guedj_m, Tue Apr 12 2016 11:38:29 GMT-0700 (PDT)*
+
+---
 ## 0.4.0
 
 * Root file and version file are now generated

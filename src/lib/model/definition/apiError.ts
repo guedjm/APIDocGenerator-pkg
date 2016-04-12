@@ -1,6 +1,8 @@
 "use strict";
 
-export default class APIError {
+import { IDefinition } from "./IDefinition";
+
+export default class APIError implements IDefinition {
 
   private _name: string;
   private _status: number;
@@ -8,6 +10,7 @@ export default class APIError {
   private _subcode: number;
   private _message: string;
   private _fix: string;
+  private _id: string;
 
   constructor(error: any) {
     this.parse(error);
@@ -17,20 +20,41 @@ export default class APIError {
   get name(): string {
     return this._name;
   }
+
   get status(): number {
     return this._status;
   }
+
   get code(): number {
     return this._code;
   }
+
   get subcode(): number {
     return this._subcode;
   }
+
   get message(): string {
     return this._message;
   }
+
   get fix(): string {
     return this._fix;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  public buildId(): void {
+    this._id = `error-${this._name}`;
+  }
+
+  public getDeclaredSymbol(): string[] {
+    return [this._id];
+  }
+
+  public getDependenceSymbol(): string[] {
+    return [];
   }
 
   public print(): void {
@@ -72,6 +96,4 @@ export default class APIError {
       }
     }
   }
-
-
 }

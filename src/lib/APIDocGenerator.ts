@@ -27,6 +27,10 @@ export class APIDocGenerator {
     this._changelog = new Changelog(changelog);
     this._defintion = new APIDefintion(def);
 
+    console.log(this._defintion.getDeclaredSymbols());
+
+    console.log("");
+    console.log(this._defintion.getDependenceSymbol());
     this.generate();
   }
 

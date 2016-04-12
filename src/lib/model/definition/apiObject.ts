@@ -1,10 +1,13 @@
 "use strict";
 
-export default class APIObject {
+import { IDefinition } from "./IDefinition";
+
+export default class APIObject implements IDefinition {
 
   private _name: string;
   private _description: string;
   private _obj: any;
+  private _id: string;
 
   constructor(object: any) {
     this.parse(object);
@@ -20,6 +23,22 @@ export default class APIObject {
 
   get obj(): any {
     return this._obj;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  public buildId(): void {
+    this._id = `object-${this._name}`;
+  }
+
+  public getDeclaredSymbol(): string[] {
+    return [this._id.replace(/ /g, "-").toLowerCase()];
+  }
+
+  public getDependenceSymbol(): string[] {
+    return [];
   }
 
   public print(): void {

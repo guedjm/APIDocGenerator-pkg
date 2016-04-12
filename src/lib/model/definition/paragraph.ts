@@ -1,10 +1,13 @@
 "use strict";
 
-export default class Paragraph {
+import { IDefinition } from "./IDefinition";
+
+export default class Paragraph implements IDefinition {
 
   private _title: string;
   private _text: string;
   private _sub: Paragraph[];
+  private _id: string;
 
   constructor(paragraph: any) {
     this._sub = [];
@@ -21,6 +24,37 @@ export default class Paragraph {
 
   get sub(): Paragraph[] {
     return this._sub;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  public buildId(base?: string): void {
+    if (base === undefined || base === "") {
+      base = "paragraph";
+    }
+    this._id = `${base}-${this._title}`;
+
+    this._sub.forEach(function(elem: Paragraph): void {
+      elem.buildId(this._id);
+    }, this);
+  }
+
+  public getDeclaredSymbol(): string[] {
+    let symbols: string[] = [];
+
+    this._sub.forEach(function(elem: Paragraph): void {
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    symbols.push(this._id);
+
+    return symbols;
+  }
+
+  public getDependenceSymbol(): string[] {
+    return [];
   }
 
   public print(align: number): void {

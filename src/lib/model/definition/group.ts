@@ -1,19 +1,68 @@
 "use strict";
 
 import Url from "./url";
-import { IRoute } from "./IRoute";
+import { IDefinition } from "./IDefinition";
 
-export default class Group implements IRoute {
+export default class Group implements IDefinition {
 
   private _title: string;
   private _text: string;
   private _sub: Group[];
   private _url: Url[];
+  private _id: string;
 
   constructor(group: any) {
     this._sub = [];
     this._url = [];
     this.parse(group);
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  public buildId(base?: string): void {
+    if (base === undefined || base === "") {
+      base = "routes";
+    }
+    this._id = `${base}-${this._title}`;
+
+    this._sub.forEach(function(elem: Group): void {
+      elem.buildId(this._id);
+    }, this);
+
+    this._url.forEach(function(elem: Url): void {
+      elem.buildId(this._id);
+    }, this);
+  }
+
+  public getDeclaredSymbol(): string[] {
+    let symbols: string[] = [];
+
+    this._sub.forEach(function(elem: Group): void {
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    this._url.forEach(function(elem: Url): void {
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    symbols.push(this._id);
+    return symbols;
+  }
+
+  public getDependenceSymbol(): string[] {
+    let symbols: string[] = [];
+
+    this._sub.forEach(function(elem: Group): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    this._url.forEach(function(elem: Url): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    return symbols;
   }
 
   public print(align: number): void {

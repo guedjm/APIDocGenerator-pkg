@@ -4,7 +4,7 @@ import Tag from "./definition/tag";
 import Paragraph from "./definition/paragraph";
 import APIError from "./definition/apiError";
 import APIObject from "./definition/apiObject";
-import { IRoute, buildRoute } from "./definition/IRoute";
+import { IDefinition, buildRoute } from "./definition/IDefinition";
 
 export default class APIDefintion {
 
@@ -12,7 +12,7 @@ export default class APIDefintion {
   private _description: string;
   private _paragraphs: Paragraph[];
   private _tags: Tag[];
-  private _routes: IRoute[];
+  private _routes: IDefinition[];
   private _errors: APIError[];
   private _objects: APIObject[];
 
@@ -23,6 +23,58 @@ export default class APIDefintion {
     this._errors = [];
     this._objects = [];
     this.parse(definition);
+  }
+
+  public getDeclaredSymbols(): string[] {
+    let symbols: string[] = [];
+
+    this._paragraphs.forEach(function(elem: Paragraph): void {
+      elem.buildId();
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    this._routes.forEach(function(elem: IDefinition): void {
+      elem.buildId();
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    this._errors.forEach(function(elem: APIError): void {
+      elem.buildId();
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    this._objects.forEach(function(elem: APIObject): void {
+      elem.buildId();
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    return symbols;
+  }
+
+  public getDependenceSymbol(): string[] {
+    let symbols: string[] = [];
+
+    this._paragraphs.forEach(function(elem: Paragraph): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    this._routes.forEach(function(elem: IDefinition): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    this._errors.forEach(function(elem: APIError): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    this._objects.forEach(function(elem: APIObject): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    this._tags.forEach(function(elem: Tag): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    return symbols;
   }
 
   public print(): void {
@@ -45,7 +97,7 @@ export default class APIDefintion {
 
     console.log("");
     console.log("Routes:");
-    this._routes.forEach(function(elem: IRoute): void {
+    this._routes.forEach(function(elem: IDefinition): void {
       elem.print(1);
     });
 
@@ -122,7 +174,7 @@ export default class APIDefintion {
     return this._tags;
   }
 
-  get routes(): IRoute[] {
+  get routes(): IDefinition[] {
     return this._routes;
   }
 

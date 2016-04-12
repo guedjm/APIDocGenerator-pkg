@@ -1,12 +1,15 @@
 "use strict";
 
-export default class Parameter {
+import { IDefinition } from "./IDefinition";
+
+export default class Parameter implements IDefinition {
 
   private _name: string;
   private _description: string;
   private _required: boolean;
   private _in: string;
   private _type: string;
+  private _id: string;
 
   constructor(param: any) {
     this.parse(param);
@@ -30,6 +33,27 @@ export default class Parameter {
 
   get type(): string {
     return this._type;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  public buildId(base: string): void {
+    this._id = `${base}-${this._name}`;
+  }
+
+  public getDeclaredSymbol(): string[] {
+    return [this._id];
+  }
+
+  public getDependenceSymbol(): string[] {
+    const basicType: string[] = ["int", "string"];
+
+    if (basicType.indexOf(this._type) === -1) {
+      return [this._type];
+    }
+    return [];
   }
 
   public print(align: number): void {

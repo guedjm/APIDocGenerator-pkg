@@ -2,16 +2,20 @@
 
 import Parameter from "./parameter";
 import Response from "./response";
+import { IDefinition } from "./IDefinition";
 
-export default class Method {
+export default class Method implements IDefinition {
 
+  private _meth: string;
   private _summary: string;
   private _description: string;
   private _parameters: Parameter[];
   private _responses: Response[];
   private _errors: string[];
+  private _id: string;
 
-  constructor(method: any) {
+  constructor(meth: string, method: any) {
+    this._meth = meth;
     this._parameters = [];
     this._responses = [];
     this._errors = [];
@@ -38,6 +42,50 @@ export default class Method {
     return this._errors;
   }
 
+  get id(): string {
+    return this._id;
+  }
+
+  public buildId(base: string): void {
+    this._id = `${base}-${this._meth}`;
+
+    this._parameters.forEach(function(elem: Parameter): void {
+      elem.buildId(this._id);
+    }, this);
+
+    this._responses.forEach(function(elem: Response): void {
+      elem.buildId(this._id);
+    }, this);
+  }
+
+  public getDeclaredSymbol(): string[] {
+    let symbols: string[] = [];
+
+    this._parameters.forEach(function(elem: Parameter): void {
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    this._responses.forEach(function(elem: Response): void {
+      symbols.push(...elem.getDeclaredSymbol());
+    });
+
+    symbols.push(this._id);
+    return symbols;
+  };
+
+  public getDependenceSymbol(): string[] {
+    let symbols: string[] = [];
+
+    this._parameters.forEach(function(elem: Parameter): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    this._responses.forEach(function(elem: Response): void {
+      symbols.push(...elem.getDependenceSymbol());
+    });
+
+    return symbols;
+  };
 
   public print(align: number): void {
     let space: string = "";

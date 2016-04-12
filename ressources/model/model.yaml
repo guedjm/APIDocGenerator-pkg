@@ -34,7 +34,7 @@ api:
                       description: lol
                       required: true
                       in: body
-                      type: sting
+                      type: string
                         
                   responses:
                   - 200:
