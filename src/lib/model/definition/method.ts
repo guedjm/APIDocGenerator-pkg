@@ -47,7 +47,7 @@ export default class Method implements IDefinition {
   }
 
   public buildId(base: string): void {
-    this._id = `${base}-${this._meth}`;
+    this._id = `${base}-${this._meth}`.toLowerCase();
 
     this._parameters.forEach(function(elem: Parameter): void {
       elem.buildId(this._id);
@@ -83,6 +83,8 @@ export default class Method implements IDefinition {
     this._responses.forEach(function(elem: Response): void {
       symbols.push(...elem.getDependenceSymbol());
     });
+
+    symbols.push(...this._errors);
 
     return symbols;
   };

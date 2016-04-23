@@ -25,7 +25,7 @@ export default class Group implements IDefinition {
     if (base === undefined || base === "") {
       base = "routes";
     }
-    this._id = `${base}-${this._title}`;
+    this._id = `${base}-${this._title}`.toLowerCase();
 
     this._sub.forEach(function(elem: Group): void {
       elem.buildId(this._id);

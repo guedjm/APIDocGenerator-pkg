@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.0
+
+* Add menu generation
+
+*guedj_m, Sat Apr 23 2016 12:33:52 GMT-0700 (PDT)*
+
+---
 ## 0.5.0
 
 * Add dependency implementation

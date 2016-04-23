@@ -2,20 +2,22 @@
 
 import Changelog from "./model/changelog";
 import YamlParser from "./utils/yamlParser";
-import APIDefintion from "./model/apiDefinition";
+import APIDefinition from "./model/apiDefinition";
 import DefinitionValidator from "./utils/definitionValidator";
 import VersionFileGenerator from "./utils/versionFileGenerator";
 import RootFileGenerator from "./utils/rootFileGenerator";
+import DefinitionFileGenerator from "./utils/definitionFileGenerator";
 
 /**
  * APIDocGenerator
  */
 export class APIDocGenerator {
 
-  private _defintion: APIDefintion;
+  private _definition: APIDefinition;
   private _changelog: Changelog;
   private _versionFileStr: string;
   private _rootFileStr: string;
+  private _indexFileStr: string;
 
   public load(definition: string, changelog: string, version: string): void {
 
@@ -25,19 +27,15 @@ export class APIDocGenerator {
 
 
     this._changelog = new Changelog(changelog);
-    this._defintion = new APIDefintion(def);
-
-    console.log(this._defintion.getDeclaredSymbols());
-
-    console.log("");
-    console.log(this._defintion.getDependenceSymbol());
-    this.generate();
+    this._definition = new APIDefinition(def);
+    this.generate(version);
   }
 
-  private generate(): void {
+  private generate(version: string): void {
 
     this._versionFileStr = VersionFileGenerator.generate(this._changelog);
-    this._rootFileStr = RootFileGenerator.generate(this._defintion, this._changelog);
+    this._rootFileStr = RootFileGenerator.generate(this._definition, this._changelog);
+    this._indexFileStr = DefinitionFileGenerator.generate(this._definition, this._changelog, version);
   }
 
   get versionFileStr(): string {
@@ -46,5 +44,9 @@ export class APIDocGenerator {
 
   get rootFileStr(): string {
     return this._rootFileStr;
+  }
+
+  get definitionFileStr(): string {
+    return this._indexFileStr;
   }
 }

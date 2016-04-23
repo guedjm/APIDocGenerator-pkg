@@ -30,7 +30,7 @@ export default class Response implements IDefinition {
   }
 
   public buildId(base: string): void {
-    this._id = `${base}-${this._code}`;
+    this._id = `${base}-${this._code}`.toLowerCase();
   }
 
   public getDeclaredSymbol(): string[] {

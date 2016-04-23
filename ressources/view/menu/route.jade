@@ -1,0 +1,82 @@
+mixin group(g)
+    li
+        a(href="##{g.id}") !{g.title}
+
+    if (g.url.length > 0)
+        table(class="url-tabl")
+            tbody
+                each u in g.url
+                    +url(u)
+
+    if (g.sub.length > 0)
+        ul
+            each s in g.sub
+                +group(s)
+
+
+
+mixin url(u)
+    if u.get
+        tr
+            td
+                a(href="##{u.get.id}")
+                    span(class="label label-primary") GET
+
+            td(class="slidebar-nav-url")
+                a(href="##{u.get.id}") !{u.url}
+
+    if u.post
+        tr
+            td
+                a(href="##{u.post.id}")
+                    span(class="label label-success") POST
+
+            td(class="slidebar-nav-url")
+                a(href="##{u.post.id}") !{u.url}
+
+    if u.patch
+        tr
+            td
+                a(href="##{u.patch.id}")
+                    span(class="label label-warning") PATCH
+
+            td(class="slidebar-nav-url")
+                a(href="##{u.patch.id}") !{u.url}
+
+    if u.put
+        tr
+            td
+                a(href="##{u.put.id}")
+                    span(class="label label-info") PUT
+
+            td(class="slidebar-nav-url")
+                a(href="##{u.put.id}") !{u.url}
+
+    if u.delete
+        tr
+            td
+                a(href="##{u.get.id}")
+                    span(class="label label-danger") DELETE
+
+            td(class="slidebar-nav-url")
+                a(href="##{u.delete.id}") !{u.url}
+
+
+
+div(class="bloc")
+    a(href="#api") API REFERENCE
+    ul
+        - var first = true;
+        each route in api.routes
+            if (route.title !== undefined)
+                +group(route)
+
+        each route in api.routes
+            if (route.title === undefined)
+                if (first)
+                    table
+                        tbody
+                            - first = false
+                            +url(route)
+                else
+                    +url(route)

@@ -21,7 +21,7 @@
     "./src/lib/utils/yamlParser.ts",
     "./src/lib/utils/versionFileGenerator.ts",
     "./src/lib/utils/rootFileGenerator.ts",   
-    "./src/lib/utils/definitionFileGenerator.ts",   
+    "./src/lib/utils/definitionFileGenerator.ts",
     "./src/lib/model/apiDefinition.ts",
     "./src/lib/model/changeDescription.ts",
     "./src/lib/model/changelog.ts",

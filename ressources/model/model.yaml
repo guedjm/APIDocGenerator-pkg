@@ -14,15 +14,15 @@ api:
   
   tags:
     - NAME:
-        link: lol
+        link: paragraph-title-tr
     - Tag2:
-        link: prout
+        link: routes-authentication-client
       
   routes:
-    - TOTO:
+    - Authentication:
         text: lol
         sub:
-        - TITI:
+        - Client:
             text: lol
             url:
             - /ping:
@@ -35,15 +35,16 @@ api:
                       required: true
                       in: body
                       type: string
-                        
+
                   responses:
                   - 200:
                       description: lol
                       type: string
-                      
+
                   errors:
                     - error-id
-                
+
+
     - /ping:
         get:
           summary: lol
@@ -53,25 +54,45 @@ api:
               description: lol
               required: true
               in: body
-              type: sting
-                
+              type: string
+
           responses:
           - 200:
               description: lol
               type: string
-              
+
           errors:
             - error-id
 
+    - /pong:
+        post:
+          summary: lol
+          description: lol
+          params:
+          - TOTO:
+              description: lol
+              required: true
+              in: body
+              type: string
+
+          responses:
+          - 200:
+              description: lol
+              type: string
+
+          errors:
+            - error-id
+
+
       
   errors:
-  - invalid-requirest:
+  - Invalid request:
       status: 400
       code: 1
       message: Hello
       fix: fix
       
-  - client-auth:
+  - Client auth:
       status: 401
       code: 1
       subcode: 1
@@ -82,12 +103,13 @@ api:
     - Error:
         description: Error Object
         obj:
-            error:
-                code: 0
-                subcode: 0
-                message: ""
+          error:
+            code: 0
+            subcode: 0
+            message: ""
             
     - Access Token Reply:
         description: reply
         obj:
             acess_token: ""
+

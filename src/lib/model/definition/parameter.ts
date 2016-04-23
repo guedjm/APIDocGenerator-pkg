@@ -40,7 +40,7 @@ export default class Parameter implements IDefinition {
   }
 
   public buildId(base: string): void {
-    this._id = `${base}-${this._name}`;
+    this._id = `${base}-${this._name}`.toLowerCase();
   }
 
   public getDeclaredSymbol(): string[] {

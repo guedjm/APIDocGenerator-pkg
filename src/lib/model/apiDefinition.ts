@@ -178,6 +178,10 @@ export default class APIDefintion {
     return this._routes;
   }
 
+  get objects(): APIObject[] {
+    return this._objects;
+  }
+
   get errors(): APIError[] {
     return this._errors;
   }

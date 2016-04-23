@@ -30,11 +30,11 @@ export default class APIObject implements IDefinition {
   }
 
   public buildId(): void {
-    this._id = `object-${this._name}`;
+    this._id = `object-${this._name}`.replace(/ /g, "-").toLowerCase();
   }
 
   public getDeclaredSymbol(): string[] {
-    return [this._id.replace(/ /g, "-").toLowerCase()];
+    return [this._id];
   }
 
   public getDependenceSymbol(): string[] {

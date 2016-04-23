@@ -26,7 +26,7 @@ export default class Url implements IDefinition {
     if (base === undefined || base === "") {
       base = "routes";
     }
-    this._id = `${base}${this.url.replace("/", "-")}`;
+    this._id = `${base}${this.url.replace("/", "-")}`.toLowerCase();
 
     if (this._get !== undefined) {
       this._get.buildId(this._id);

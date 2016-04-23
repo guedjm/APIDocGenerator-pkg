@@ -46,7 +46,7 @@ export default class APIError implements IDefinition {
   }
 
   public buildId(): void {
-    this._id = `error-${this._name}`;
+    this._id = `error-${this._name}`.replace(/ /g, "-").toLowerCase();
   }
 
   public getDeclaredSymbol(): string[] {

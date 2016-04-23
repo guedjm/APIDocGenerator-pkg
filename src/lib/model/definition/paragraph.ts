@@ -34,7 +34,7 @@ export default class Paragraph implements IDefinition {
     if (base === undefined || base === "") {
       base = "paragraph";
     }
-    this._id = `${base}-${this._title}`;
+    this._id = `${base}-${this._title}`.toLowerCase();
 
     this._sub.forEach(function(elem: Paragraph): void {
       elem.buildId(this._id);

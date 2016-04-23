@@ -1,0 +1,110 @@
+api:
+  name: 'null'
+  description: 'null'
+  paragraphs:
+    -
+      TITLE:
+        text: lol
+        sub:
+          -
+            tr:
+              text: lol
+  tags:
+    -
+      NAME:
+        link: routes-ping-get
+  routes:
+    -
+      TOTO:
+        text: lol
+        sub:
+          -
+            TITI:
+              text: lol
+              url:
+                -
+                  /ping:
+                    get:
+                      summary: lol
+                      description: lol
+                      params:
+                        -
+                          TOTO:
+                            description: lol
+                            required: true
+                            in: body
+                            type: string
+                      responses:
+                        -
+                          '200':
+                            description: lol
+                            type: string
+                      errors:
+                        - error-invalid-request
+    -
+      /ping:
+        get:
+          summary: lol
+          description: lol
+          params:
+            -
+              TOTO:
+                description: lol
+                required: true
+                in: body
+                type: string
+          responses:
+            -
+              200:
+                description: lol
+                type: string
+          errors:
+            - error-invalid-request
+
+    -
+      /pong:
+        post:
+          summary: Pong
+          description: Pong route
+          params:
+            -
+              TOTO:
+                description: lol
+                required: true
+                in: body
+                type: string
+          responses:
+            -
+              200:
+                description: lol
+                type: string
+          errors:
+            - error-invalid-request
+  errors:
+    -
+      Invalid request:
+        status: 400
+        code: 1
+        message: Hello
+        fix: fix
+    -
+      Client auth:
+        status: 401
+        code: 1
+        subcode: 1
+        message: Deg
+        fix: mort
+  objects:
+    -
+      Error:
+        description: 'Error Object'
+        obj:
+          error:
+            code: 0
+            subcode: 0
+            message: ""
+    -
+      'Access Token Reply':
+        description: reply
+        obj:
+          acess_token: ""
