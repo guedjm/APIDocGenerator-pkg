@@ -30,6 +30,10 @@ export default class Method implements IDefinition {
     return this._description;
   }
 
+  get meth(): string {
+    return this._meth;
+  }
+
   get parameters(): Parameter[] {
     return this._parameters;
   }

@@ -1,3 +1,42 @@
-//
-   Created by guedj_m on 4/12/16.
 
+mixin group(g)
+    div(class="path-group")
+        h2(id="#{g.id}") #{g.title}
+        p #{g.text}
+
+        each val in g.sub
+            +group(val)
+
+        each val in g.url
+            +route(val)
+
+mixin route(r)
+    if r.get
+        +method(r, r.get, "primary")
+
+    if r.post
+        +method(r, r.post, "post")
+
+    if r.patch
+        +method(r, r.patch, "warning")
+
+    if r.put
+        +method(r, r.put, "info")
+
+    if r.delete
+        +method(r, r.delete, "danger")
+
+mixin method(r, m, color)
+    include ./method
+
+
+div(class="part")
+    h1(id="api") API Reference
+    hr
+    each val in api.routes
+        if (val.title != undefined)
+            +group(val)
+
+    each val in api.routes
+        if (val.title == undefined)
+            +route(val)

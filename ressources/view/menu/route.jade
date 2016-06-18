@@ -2,16 +2,16 @@ mixin group(g)
     li
         a(href="##{g.id}") !{g.title}
 
+    if (g.sub.length > 0)
+        ul
+            each s in g.sub
+                +group(s)
+
     if (g.url.length > 0)
         table(class="url-tabl")
             tbody
                 each u in g.url
                     +url(u)
-
-    if (g.sub.length > 0)
-        ul
-            each s in g.sub
-                +group(s)
 
 
 
