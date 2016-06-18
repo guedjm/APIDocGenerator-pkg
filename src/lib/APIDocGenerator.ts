@@ -48,7 +48,7 @@ export class APIDocGenerator {
     this._generatedFile.push(this._definition.generateRootFile(this._changelog));
     this._generatedFile.push(this._definition.generateDefinitionFile(this._changelog, version));
 
-    this.copySourceDir("./resources/public/", "");
+    this.copySourceDir(__dirname + "/../resources/public/", "");
 
     return this._generatedFile;
   }
