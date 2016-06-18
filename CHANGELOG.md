@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0
+
+* Fix package path
+* Fix link on home & back to home
+
+*guedj_m, Sun Jun 19 2016 00:56:44 GMT+0200 (CEST)*
+
+---
 ## 1.0.0
 
 * Add source web resources file to generate result
