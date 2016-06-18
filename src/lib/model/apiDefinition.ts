@@ -11,7 +11,7 @@ import { IDefinition, buildRoute } from "./definition/IDefinition";
 import Symbol from "../preprocessing/symbol";
 import TextFormatter from "../preprocessing/textFromatter";
 import Changelog from "./changelog";
-import GeneratedFile from "./generatedFile";
+import { GeneratedFile } from "./generatedFile";
 
 export default class APIDefintion {
 

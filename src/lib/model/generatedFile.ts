@@ -1,6 +1,6 @@
 "use strict";
 
-export default class GeneratedFile {
+export class GeneratedFile {
 
   private _path: string;
   private _content: string;

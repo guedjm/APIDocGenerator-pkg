@@ -4,7 +4,7 @@ import Changelog from "./model/changelog";
 import YamlParser from "./utils/yamlParser";
 import APIDefinition from "./model/apiDefinition";
 import DefinitionValidator from "./utils/definitionValidator";
-import GeneratedFile from "./model/generatedFile";
+import { GeneratedFile } from "./model/generatedFile";
 import {statSync, readdirSync, readFileSync, Stats} from "fs";
 
 /**

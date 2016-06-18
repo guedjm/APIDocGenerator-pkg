@@ -2,7 +2,7 @@
 
 const md: any = require("markdown").markdown;
 import ChangeDescription from "./changeDescription";
-import GeneratedFile from "./generatedFile";
+import { GeneratedFile } from "./generatedFile";
 
 export default class Changelog {
 
