@@ -1,11 +1,11 @@
 {
-  "name": "oauth2utils",
+  "name": "APIDocGenerator-pkg",
   "version": false,
   "main": "./index.d.ts",
   "dependencies": {},
-  "ambientDependencies": {
+  "globalDependencies": {
     "jade": "registry:dt/jade#0.0.0+20160316155526",
-    "node": "registry:dt/node#4.0.0+20160319033040",
-    "yamljs": "registry:dt/yamljs#0.2.3+20160316155526"
+    "node": "registry:dt/node#6.0.0+20160613154055",
+    "yamljs": "registry:dt/yamljs#0.2.3+20160602141818"
   }
 }

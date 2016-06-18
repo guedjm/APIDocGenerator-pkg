@@ -36,6 +36,6 @@
     "./src/lib/model/definition/apiError.ts",
     "./src/lib/model/definition/apiObject.ts",
 
-    "./typings/main.d.ts"
+    "./typings/index.d.ts"
   ]
 }

@@ -61,148 +61,142 @@ api:
         url:
           -
             /auth/login:
-              -
-                get:
-                  summary: Login the user and reply an accessToken
-                  description: This operation register the user if it is the first time he uses the application.
-                  tags:
-                    -
-                      Client Auth
-                  parameters:
-                    -
-                      facebookToken:
-                        description: The facebook access token
-                        required: true
-                        in: body
-                        type: string
-                  responses:
-                    -
-                      200:
-                        description: Operation Success
-                        type: object-access-token-reply
-                  errors:
-                    - error-invalid-request
-                    - error-client-auth
-                    - error-fb-invalid-token
+              get:
+                summary: Login the user and reply an accessToken
+                description: This operation register the user if it is the first time he uses the application.
+                tags:
+                  -
+                    Client Auth
+                parameters:
+                  -
+                    facebookToken:
+                      description: The facebook access token
+                      required: true
+                      in: body
+                      type: string
+                responses:
+                  -
+                    200:
+                      description: Operation Success
+                      type: object-access-token-reply
+                errors:
+                  - error-invalid-request
+                  - error-client-auth
+                  - error-fb-invalid-token
 
           -
             /auth/token:
-              -
-                get:
-                  summary: Get information about the current token (included in the request header)
-                  tags:
-                    -
-                      User Auth
-                  responses:
-                    -
-                      200:
-                        description: Valid token
-                        type: object-token-information-reply
-                  errors:
-                    - error-user-auth
-                    - error-expired-token
-                    - error-wrong-token
+              get:
+                summary: Get information about the current token (included in the request header)
+                tags:
+                  -
+                    User Auth
+                responses:
+                  -
+                    200:
+                      description: Valid token
+                      type: object-token-information-reply
+                errors:
+                  - error-user-auth
+                  - error-expired-token
+                  - error-wrong-token
 
           -
             /auth/renew:
-              -
-                get:
-                  summary: Get a new access token
-                  description: Exchange an expired access token and give a new one
-                  tags:
-                    - Client auth
-                  parameters:
-                    -
-                      access_token:
-                        description: The exipired access token
-                        required: true
-                        type: string
-                        in: query
-                  responses:
-                    -
-                      200:
-                        description: Operation sucess
-                        type: object-access-token-reply
-                  errors:
-                    - error-invalid-request
-                    - error-client-auth
-                    - error-wrong-token
+              get:
+                summary: Get a new access token
+                description: Exchange an expired access token and give a new one
+                tags:
+                  - Client auth
+                parameters:
+                  -
+                    access_token:
+                      description: The exipired access token
+                      required: true
+                      type: string
+                      in: query
+                responses:
+                  -
+                    200:
+                      description: Operation sucess
+                      type: object-access-token-reply
+                errors:
+                  - error-invalid-request
+                  - error-client-auth
+                  - error-wrong-token
 
           -
             /auth/facebooktoken:
-              -
-                get:
-                  summary: Get the current facebook token
-                  description: Return the current facebook token
-                  responses:
-                    -
-                      200:
-                        description: Operation success
-                        type: string
-                  errors:
-                    - error-user-auth
-                    - error-expired-token
-                    - error-wrong-token
-                  tags:
-                    - User Auth
+              get:
+                summary: Get the current facebook token
+                description: Return the current facebook token
+                responses:
+                  -
+                    200:
+                      description: Operation success
+                      type: string
+                errors:
+                  - error-user-auth
+                  - error-expired-token
+                  - error-wrong-token
+                tags:
+                  - User Auth
 
-              -
-                post:
-                  summary: Update the server side facebook token
-                  parameters:
-                    -
-                      facebookToken:
-                        description: Faceboook token
-                        in: body
-                        required: true
-                        type: string
-                  reponses:
-                    -
-                      200:
-                        description: Token updated
-                        type: string
+              post:
+                summary: Update the server side facebook token
+                parameters:
+                  -
+                    facebookToken:
+                      description: Faceboook token
+                      in: body
+                      required: true
+                      type: string
+                responses:
+                  -
+                    200:
+                      description: Token updated
+                      type: string
 
-                  errors:
-                    - error-user-auth
-                    - error-expired-token
-                    - error-wrong-token
+                errors:
+                  - error-user-auth
+                  - error-expired-token
+                  - error-wrong-token
 
 
 
-    -
+    -
       Client:
         text: Request related to client
         url:
           -
             /client:
-              -
-                post:
-                  summary: Create a new client
-                  description: This operation create a new client. Only client of type 3 (admin) are allowed to perform this operation
-                  tags:
-                    - Client Auth
-                  parameters:
-                    -
-                      name:
-                        description: Client name
-                        in: body
-                        type: string
-                        required: true
-                    -
-                      type:
-                        description: Client type
-                        in: body
-                        type: string
-                        required: true
+              post:
+                summary: Create a new client
+                description: This operation create a new client. Only client of type 3 (admin) are allowed to perform this operation
+                tags:
+                  - Client Auth
+                parameters:
+                  -
+                    name:
+                      description: Client name
+                      in: body
+                      type: string
+                      required: true
+                  -
+                    type:
+                      description: Client type
+                      in: body
+                      type: string
+                      required: true
 
-                  responses:
-                    -
-                      200:
-                        description: Client created
-                        type: object-client
-                  errors:
-                    - error-invalid-client
-                    - error-client-auth
+                responses:
+                  -
+                    200:
+                      description: Client created
+                      type: object-client
+                errors:
+                  - error-invalid-client
+                  - error-client-auth
 
     -
       User:
@@ -210,37 +204,35 @@ api:
         url:
           -
             /user/info:
-              -
-                get:
-                  summary: Get user information
-                  responses:
-                    -
-                      200:
-                        description: User information issued
-                        type: object-user-info
-                  errors:
-                    - error-user-auth
-                    - error-expired-token
-                    - error-wrong-token
-                  tags:
-                    - User Auth
+              get:
+                summary: Get user information
+                responses:
+                  -
+                    200:
+                      description: User information issued
+                      type: object-user-info
+                errors:
+                  - error-user-auth
+                  - error-expired-token
+                  - error-wrong-token
+                tags:
+                  - User Auth
 
           -
             /user/friend:
-              -
-                get:
-                  summary: Get user friends
-                  response:
-                    -
-                      200:
-                        description: User information issued
-                        type: object-friend-list
-                  errors:
-                    - error-user-auth
-                    - error-expired-token
-                    - error-wrong-token
-                  tags:
-                    - User Auth
+              get:
+                summary: Get user friends
+                responses:
+                  -
+                    200:
+                      description: User information issued
+                      type: object-friend-list
+                errors:
+                  - error-user-auth
+                  - error-expired-token
+                  - error-wrong-token
+                tags:
+                  - User Auth
 
     -
       /ping:
@@ -360,6 +352,7 @@ api:
 
     -
       User info:
+        description: User information
         obj:
           facebookId: ""
           publicId: ""
@@ -369,10 +362,11 @@ api:
 
     -
       Friend list:
+        description: Friend list
         obj:
-          -
-            facebookId: ""
-            publicId: ""
-            firstName: ""
-            lastName: ""
-            name: ""
+            -
+              facebookId: ""
+              publicId: ""
+              firstName: ""
+              lastName: ""
+              name: ""

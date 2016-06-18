@@ -180,7 +180,7 @@
         "description": {
           "type": "string"
         },
-        "params": {
+        "parameters": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/param"
@@ -197,6 +197,12 @@
           "items": {
             "type": "string"
           }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false,
@@ -207,7 +213,7 @@
     "param": {
       "type": "object",
       "patternProperties": {
-        "^[a-zA-Z- ]+$": {
+        "^[a-zA-Z- _]+$": {
           "$ref": "#/definitions/param-data"
         }
       },
@@ -225,7 +231,7 @@
         "in": {
           "enum": [
             "body",
-            "url"
+            "query"
           ]
         },
         "type": {
@@ -325,7 +331,13 @@
           "type": "string"
         },
         "obj": {
-          "type": "object"
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "array"
+            }]
         }
       },
       "required": [
