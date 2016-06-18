@@ -8,8 +8,6 @@ export interface IDefinition {
 
   id: string;
 
-  print(align?: number): void;
-
   buildId(base?: string): void;
   getDeclaredSymbol(): string[];
   getDependencySymbol(stack: string[]): Symbol[];

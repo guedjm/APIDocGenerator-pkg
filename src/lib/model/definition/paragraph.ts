@@ -63,22 +63,8 @@ export default class Paragraph implements IDefinition {
 
     this._text = TextFormatter.format(this._text);
 
-    this._sub.forEach(function (elem: Paragraph): void {
-      elem.formatText();
-    });
-  }
-
-  public print(align: number): void {
-
-    let space: string = "";
-    for (let i: number = 0; i < align; i++) {
-      space += " ";
-    }
-    console.log(space + this._title);
-    console.log(space + this._text);
-
     this._sub.forEach(function(elem: Paragraph): void {
-      elem.print(align + 1);
+      elem.formatText();
     });
   }
 

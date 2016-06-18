@@ -107,7 +107,7 @@ api:
                 summary: Get a new access token
                 description: Exchange an expired access token and give a new one
                 tags:
-                  - Client auth
+                  - Client Auth
                 parameters:
                   -
                     access_token:
@@ -156,6 +156,8 @@ api:
                     200:
                       description: Token updated
                       type: string
+                tags:
+                  - User Auth
 
                 errors:
                   - User Auth

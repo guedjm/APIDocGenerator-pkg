@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0
+
+* Finalize doc generation
+
+*guedj_m, Sat Jun 18 2016 22:29:38 GMT+0200 (CEST)*
+
+---
 ## 0.6.0
 
 * Add menu generation

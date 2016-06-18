@@ -2,6 +2,7 @@
 
 const md: any = require("markdown").markdown;
 import ChangeDescription from "./changeDescription";
+import GeneratedFile from "./generatedFile";
 
 export default class Changelog {
 
@@ -57,16 +58,14 @@ export default class Changelog {
     return this._changes;
   }
 
-  public print(): void {
+  public generateVersionFile(): GeneratedFile {
+
+    let fileContent: any[] = [];
+
     this._changes.forEach(function(elem: ChangeDescription): void {
-      console.log(elem.version + " :");
-      elem.changes.forEach(function(e: string): void {
-        console.log(" o " + e);
-      });
-      console.log("By " + elem.author + " the " + elem.date);
-      console.log("");
+      fileContent.push({ version: elem.version, author: elem.author, date: elem.date, changes: elem.changes });
     });
+
+    return new GeneratedFile("/.version.json", JSON.stringify(fileContent, undefined, 2));
   }
-
-
 }

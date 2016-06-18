@@ -60,20 +60,12 @@ export default class APIError implements IDefinition {
   }
 
   public formatText(): void {
+
     this._message = TextFormatter.format(this._message);
 
-    if (this._fix != undefined) {
+    if (this._fix !== undefined) {
       this._fix = TextFormatter.format(this._fix);
     }
-  }
-
-  public print(): void {
-    console.log(this._name + ": ");
-    console.log(`Status: ${this._status}`);
-    console.log(`Code: ${this._code}`);
-    console.log(`SubCode: ${this._subcode}`);
-    console.log(`Message: ${this._message}`);
-    console.log(`Fix: ${this._fix}`);
   }
 
   private parse(error: any): void {

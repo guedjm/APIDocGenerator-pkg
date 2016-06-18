@@ -18,8 +18,9 @@ html
         header(class="header")
             div(class="container")
                 div
-                    h4 !{api.name}
-                        span(class="version") v !{version}
+                    a(class="header-link" href="../")
+                        h4 !{api.name}
+                            span(class="version") v !{version}
 
         div(class="container")
             div(class="page_content")
@@ -29,10 +30,10 @@ html
                     div(class="col-sm-3 border-right section-left")
                         div(class="sidebar-nav")
                             include ./menu/paragraph
-                            include ./menu/route.jade
-                            include ./menu/object.jade
-                            include ./menu/error.jade
-                            include ./menu/version.jade
+                            include ./menu/route
+                            include ./menu/object
+                            include ./menu/error
+                            include ./menu/version
 
                     // Content
                     div(class="col-sm-9 border-left section-right")

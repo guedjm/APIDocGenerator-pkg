@@ -13,6 +13,7 @@ export default class Method implements IDefinition {
   private _description: string;
   private _parameters: Parameter[];
   private _responses: Response[];
+  private _tags: string[];
   private _errors: string[];
   private _id: string;
 
@@ -21,6 +22,7 @@ export default class Method implements IDefinition {
     this._parameters = [];
     this._responses = [];
     this._errors = [];
+    this._tags = [];
     this.parse(method);
   }
 
@@ -46,6 +48,10 @@ export default class Method implements IDefinition {
 
   get errors(): string[] {
     return this._errors;
+  }
+
+  get tags(): string[] {
+    return this._tags;
   }
 
   get id(): string {
@@ -94,8 +100,12 @@ export default class Method implements IDefinition {
       symbols.push(...elem.getDependencySymbol(nStack));
     });
 
-    this._errors.forEach(function (elem: string): void {
+    this._errors.forEach(function(elem: string): void {
       symbols.push(new Symbol(elem, nStack));
+    });
+
+    this._tags.forEach(function(elem: string): void {
+      symbols.push(new Symbol(elem.toLowerCase().replace(/ /g, "-"), nStack));
     });
 
     return symbols;
@@ -103,41 +113,20 @@ export default class Method implements IDefinition {
 
   public formatText(): void {
     this._summary = TextFormatter.format(this._summary);
-    if (this._description != undefined) {
+    if (this._description !== undefined) {
       this._description = TextFormatter.format(this._description);
     }
-    this._parameters.forEach(function (elem: Parameter): void {
-      elem.formatText();
-    });
-
-    this._responses.forEach(function (elem: Response): void {
-      elem.formatText();
-    });
-  }
-
-  public print(align: number): void {
-    let space: string = "";
-    for (let i: number = 0; i < align; i++) {
-      space += " ";
-    }
-
-    console.log(space + this._summary);
-    console.log(space + this._description);
-    console.log(space + "Parameters:");
     this._parameters.forEach(function(elem: Parameter): void {
-      elem.print(align + 1);
+      elem.formatText();
     });
-    console.log(space + "Responses:");
+
     this._responses.forEach(function(elem: Response): void {
-      elem.print(align + 1);
-    });
-    console.log(space + "Errors:");
-    this._errors.forEach(function(elem: string): void {
-      console.log(space + " - " + elem);
+      elem.formatText();
     });
   }
 
   private parse(method: any): void {
+
     if (method.summary === undefined) {
       throw new Error("Invalid method (Missing summary): " + method);
     }
@@ -145,8 +134,8 @@ export default class Method implements IDefinition {
     this._summary = method.summary;
     this._description = method.description;
 
-    if (method.params !== undefined) {
-      method.params.forEach(function(elem: any): void {
+    if (method.parameters !== undefined) {
+      method.parameters.forEach(function(elem: any): void {
         this._parameters.push(new Parameter(elem));
       }, this);
     }
@@ -160,6 +149,12 @@ export default class Method implements IDefinition {
     if (method.errors !== undefined) {
       method.errors.forEach(function(elem: string): void {
         this._errors.push("error-" + elem.toLowerCase().replace(/ /g, "-"));
+      }, this);
+    }
+
+    if (method.tags !== undefined) {
+      method.tags.forEach(function(elem: string): void {
+        this._tags.push(elem);
       }, this);
     }
   }

@@ -47,11 +47,24 @@ export default class APIObject implements IDefinition {
     this._description = TextFormatter.format(this._description);
   }
 
-  public print(): void {
+  public getPrettyPrintedObj(): string {
+    let jsonLine: any = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+    return JSON.stringify(this.obj, undefined, 2)
+      .replace(/&/g, "&amp;").replace(/\\"/g, "&quot;")
+      .replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(jsonLine, this.replacer);
+  }
 
-    console.log("- " + this._name);
-    console.log(this._description);
-    console.log(JSON.stringify(this._obj, undefined, 2));
+  private replacer(match: any, pIndent: any, pKey: any, pVal: any, pEnd: any): string {
+    let key: string = "<span class=json-key>";
+    let val: string = "<span class=json-value>";
+    let str: string = "<span class=json-string>";
+    let r: string = pIndent || "";
+    if (pKey)
+      r = r + key + pKey.replace(/[": ]/g, "") + "</span>: ";
+    if (pVal)
+      r = r + (pVal[0] === "\"" ? str : val) + pVal + "< /span>";
+    return r + (pEnd || "");
   }
 
   private parse(object: any): void {

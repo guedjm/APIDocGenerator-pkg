@@ -73,29 +73,12 @@ export default class Group implements IDefinition {
   public formatText(): void {
     this._text = TextFormatter.format(this._text);
 
-    this._sub.forEach(function (elem: Group): void {
-      elem.formatText();
-    });
-
-    this._url.forEach(function (elem: Url): void {
-      elem.formatText();
-    });
-  }
-
-  public print(align: number): void {
-    let space: string = "";
-    for (let i: number = 0; i < align; i++) {
-      space += " ";
-    }
-    console.log(space + this._title);
-    console.log(space + this._text);
-
     this._sub.forEach(function(elem: Group): void {
-      elem.print(align + 1);
+      elem.formatText();
     });
 
     this._url.forEach(function(elem: Url): void {
-      elem.print(align + 1);
+      elem.formatText();
     });
   }
 

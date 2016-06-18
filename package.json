@@ -1,6 +1,6 @@
 {
   "name": "api-doc-generator-pkg",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Package to generate beautiful api documentation",
   "main": "index.js",
   "typings": "index",

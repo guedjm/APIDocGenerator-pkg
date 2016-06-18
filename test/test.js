@@ -15,7 +15,9 @@ describe("Testing oauth2-utils", function () {
 
   apiDocGenerator.preprocess();
 
-  //fs.writeFileSync("./tmp/.version.js", apiDocGenerator.versionFileStr);
-  //fs.writeFileSync("./tmp/index.html", apiDocGenerator.rootFileStr);
-  //fs.writeFileSync("./tmp/v1/ici.html", apiDocGenerator.definitionFileStr);
+  const result = apiDocGenerator.generate(pkg.version);
+
+  result.forEach(function (elem) {
+    fs.writeFileSync("./tmp" + elem.path, elem.content);
+  });
 });

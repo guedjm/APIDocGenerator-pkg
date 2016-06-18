@@ -43,7 +43,7 @@ export default class Response implements IDefinition {
     const basicType: string[] = ["int", "string", "none"];
 
     if (basicType.indexOf(this._type) === -1) {
-      return [ new Symbol("object-" + this._type.toLowerCase().replace(/ /g, "-"), stack)];
+      return [new Symbol("object-" + this._type.toLowerCase().replace(/ /g, "-"), stack)];
     }
     return [];
   }
@@ -52,16 +52,6 @@ export default class Response implements IDefinition {
     this._description = TextFormatter.format(this._description);
   }
 
-  public print(align: number): void {
-    let space: string = "";
-    for (let i: number = 0; i < align; i++) {
-      space += " ";
-    }
-
-    console.log(space + this._code + ": ");
-    console.log(space + this._description);
-    console.log(space + "type: " + this._type);
-  }
 
   private parse(response: any): void {
     let done: boolean = false;

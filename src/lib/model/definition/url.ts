@@ -109,57 +109,24 @@ export default class Url implements IDefinition {
 
   public formatText(): void {
 
-    if (this._get != undefined) {
+    if (this._get !== undefined) {
       this._get.formatText();
     }
 
-    if (this._post != undefined) {
+    if (this._post !== undefined) {
       this._post.formatText();
     }
 
-    if (this._patch != undefined) {
+    if (this._patch !== undefined) {
       this._patch.formatText();
     }
 
-    if (this._put != undefined) {
+    if (this._put !== undefined) {
       this._put.formatText();
     }
 
-    if (this._delete != undefined) {
-      this._delete.formatText();
-    }
-  }
-
-  public print(align: number): void {
-    let space: string = "";
-    for (let i: number = 0; i < align; i++) {
-      space += " ";
-    }
-    console.log(space + this._url);
-
-    if (this._get !== undefined) {
-      console.log(space + "get:");
-      this._get.print(align + 1);
-    }
-
-    if (this._post !== undefined) {
-      console.log(space + "post:");
-      this._post.print(align + 1);
-    }
-
-    if (this._patch !== undefined) {
-      console.log(space + "patch:");
-      this._patch.print(align + 1);
-    }
-
-    if (this._put !== undefined) {
-      console.log(space + "put:");
-      this._put.print(align + 1);
-    }
-
     if (this._delete !== undefined) {
-      console.log(space + "delete:");
-      this._delete.print(align + 1);
+      this._delete.formatText();
     }
   }
 

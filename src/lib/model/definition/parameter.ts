@@ -53,7 +53,7 @@ export default class Parameter implements IDefinition {
     const basicType: string[] = ["int", "string"];
 
     if (basicType.indexOf(this._type) === -1) {
-      return [ new Symbol("object-" + this._type.toLowerCase().replace(/ /g, "-"), stack)];
+      return [new Symbol("object-" + this._type.toLowerCase().replace(/ /g, "-"), stack)];
     }
     return [];
   }
@@ -62,18 +62,7 @@ export default class Parameter implements IDefinition {
     this._description = TextFormatter.format(this._description);
   }
 
-  public print(align: number): void {
-    let space: string = "";
-    for (let i: number = 0; i < align; i++) {
-      space += " ";
-    }
 
-    console.log(space + this._name);
-    console.log(space + this._description);
-    console.log(space + "required: " + this._required);
-    console.log(space + "in: " + this._in);
-    console.log(space + "type: " + this._type);
-  }
 
   private parse(param: any): void {
     let done: boolean = false;

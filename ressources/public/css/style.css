@@ -16,6 +16,15 @@ a {
     color: white;
 }
 
+.header-link {
+    color: white;
+}
+
+.header-link:hover {
+    color: white;
+    text-decoration: none;
+}
+
 .version {
     margin-left: 10px;
     color: #B9B5B5;

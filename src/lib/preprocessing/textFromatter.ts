@@ -4,32 +4,30 @@ const md: any = require("markdown-it")();
 
 export default class TextFormatter {
 
-	public static format(text: string): string {
-		
-		text = md.render(text);
+  public static format(text: string): string {
 
-		text = text.replace(/;;;/g, "<br/>");
+    text = md.render(text);
 
-		const links: string[] = text.match(/{{[a-zA-Z1-9 -_\/]*:[a-zA-Z1-9 -_\/]*}}/g);
+    text = text.replace(/;;;/g, "<br/>");
 
-		if (links != undefined) {
+    const links: string[] = text.match(/{{[a-zA-Z1-9 -_\/]*:[a-zA-Z1-9 -_\/]*}}/g);
 
-			links.forEach(function (elem: string): void {
-				const sp: string[] = elem.split(':');
-				const linkTxt: string = sp[0].replace(/{{/g, '');
-				let linkValue: string  = sp[1].replace(/}}/g, '');
+    if (links) {
 
-				if (linkValue.indexOf("http://") != 0) {
-					linkValue = `#${linkValue}`;
-				}
+      links.forEach(function(elem: string): void {
+        const sp: string[] = elem.split(":");
+        const linkTxt: string = sp[0].replace(/{{/g, "");
+        let linkValue: string = sp[1].replace(/}}/g, "");
 
-				const htmlLink: string = `<a href="${linkValue}">${linkTxt}</a>`;
-				text = text.replace(elem, htmlLink);
-			});
-		}
+        if (linkValue.indexOf("http://") !== 0) {
+          linkValue = `#${linkValue}`;
+        }
 
-		console.log(text);
+        const htmlLink: string = `<a href="${linkValue}">${linkTxt}</a>`;
+        text = text.replace(elem, htmlLink);
+      });
+    }
 
-		return text;
-	}
+    return text;
+  }
 }

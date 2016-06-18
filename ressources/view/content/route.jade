@@ -2,13 +2,14 @@
 mixin group(g)
     div(class="path-group")
         h2(id="#{g.id}") #{g.title}
-        p #{g.text}
+        p !{g.text}
 
         each val in g.sub
             +group(val)
 
         each val in g.url
             +route(val)
+    hr
 
 mixin route(r)
     if r.get
@@ -27,12 +28,100 @@ mixin route(r)
         +method(r, r.delete, "danger")
 
 mixin method(r, m, color)
-    include ./method
+    div(id="#{m.id}" class="panel panel-#{color} method-bloc")
+        div(class="panel-heading")
+            div(class="row")
+                div(class="col-sm-5") !{m.meth.toUpperCase()} !{r.url}
+                div(class="cal-sm-7 tag-line")
+                    each val in m.tags
+                        - var t = api.getTagInfo(val)
+                        div(class="label #{t.label} tag")
+                            a(href="##{t.value}" style="color: white") #{t.name}
+
+        div(class="panel-body")
+
+            div(class="method-summary method-component") !{m.summary}
+
+            div(class="method-description method-component") !{m.description}
+
+            if (m.parameters.length > 0)
+                div(class="method-component")
+                    h3 Parameters
+                    table(class="table table-striped")
+                        thead
+                            tr
+                                th Name
+                                th Description
+                                th Required
+                                th In
+                                th Schema
+
+                        tbody
+                            each val in m.parameters
+                                tr
+                                    td !{val.name}
+                                    td !{val.description}
+                                    td !{val.required.toString()}
+                                    td !{val.in}
+                                    if (val.type == "string" || val.type == "int" || val.type == "bool")
+                                        td !{val.type}
+                                    else
+                                        - var obj = api.getObjectInfo(val.type);
+                                        td
+                                            a(href="##{obj.link}") #{obj.name}
+
+            if (m.responses.length > 0)
+                div(class="method-component")
+                    h3 Responses
+                    table(class="table table-striped")
+                        thead
+                            tr
+                                th Http Status Code
+                                th Description
+                                th Schema
+
+                        tbody
+                            each val in m.responses
+                                tr
+                                    - var statusClass = (val.code >= 200 && val.code < 300 ? "response-ok" : "response-error");
+                                    th(class="#{statusClass}") !{val.code}
+                                    td !{val.description}
+                                    if (val.type == "string" || val.type == "int" || val.type == "bool")
+                                        td !{val.type}
+                                    else
+                                        - var obj = api.getObjectInfo(val.type);
+                                        td
+                                            a(href="##{obj.link}") #{obj.name}
+
+            if (m.errors.length > 0)
+                div(class="method-component")
+                    h3 Errors
+                    table(class="table table-striped")
+                        thead
+                            tr
+                                th HTTP status
+                                th Code
+                                th SubCode
+                                th Message
+                                th Comment
+
+                        tbody
+                            each val in m.errors
+                                tr
+                                    - var err = api.getErrorInfo(val);
+                                    th(class="response-error") #{err.status}
+                                    td !{err.code}
+                                    td !{err.subcode}
+                                    td !{err.message}
+                                    td !{err.fix}
+
+
 
 
 div(class="part")
     h1(id="api") API Reference
     hr
+    br
     each val in api.routes
         if (val.title != undefined)
             +group(val)
