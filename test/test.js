@@ -11,13 +11,13 @@ describe("Testing oauth2-utils", function () {
   const changelog = fs.readFileSync("./CHANGELOG.md", { encoding: "utf8"});
   const pkg = JSON.parse(fs.readFileSync("./package.json", { encoding: "utf8"}));
   
-  apiDocGenerator.load(definition, changelog, pkg.version);
+  apiDocGenerator.load(definition, changelog);
 
   apiDocGenerator.preprocess();
 
   const result = apiDocGenerator.generate(pkg.version);
 
   result.forEach(function (elem) {
-    fs.writeFileSync("./tmp" + elem.path, elem.content);
+    console.log(elem.path);
   });
 });

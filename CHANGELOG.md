@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0
+
+* Add source web resources file to generate result
+
+*guedj_m, Sat Jun 18 2016 23:18:37 GMT+0200 (CEST)*
+
+---
 ## 0.7.0
 
 * Finalize doc generation
