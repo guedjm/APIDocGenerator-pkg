@@ -1,6 +1,8 @@
 "use strict";
 
 import { IDefinition } from "./IDefinition";
+import Symbol from "../../preprocessing/symbol";
+import TextFormatter from "../../preprocessing/textFromatter";
 
 export default class Paragraph implements IDefinition {
 
@@ -34,7 +36,7 @@ export default class Paragraph implements IDefinition {
     if (base === undefined || base === "") {
       base = "paragraph";
     }
-    this._id = `${base}-${this._title}`.toLowerCase();
+    this._id = `${base}-${this._title.toLowerCase().replace(/ /g, "-")}`;
 
     this._sub.forEach(function(elem: Paragraph): void {
       elem.buildId(this._id);
@@ -53,8 +55,17 @@ export default class Paragraph implements IDefinition {
     return symbols;
   }
 
-  public getDependenceSymbol(): string[] {
+  public getDependencySymbol(stack: string[]): Symbol[] {
     return [];
+  }
+
+  public formatText(): void {
+
+    this._text = TextFormatter.format(this._text);
+
+    this._sub.forEach(function (elem: Paragraph): void {
+      elem.formatText();
+    });
   }
 
   public print(align: number): void {

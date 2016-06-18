@@ -2,6 +2,7 @@
 
 import Url from "./url";
 import Group from "./group";
+import Symbol from "../../preprocessing/symbol";
 
 export interface IDefinition {
 
@@ -11,8 +12,9 @@ export interface IDefinition {
 
   buildId(base?: string): void;
   getDeclaredSymbol(): string[];
-  getDependenceSymbol(): string[];
+  getDependencySymbol(stack: string[]): Symbol[];
 
+  formatText(): void;
 }
 
 export function buildRoute(route: any): IDefinition {

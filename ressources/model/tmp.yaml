@@ -14,7 +14,7 @@ api:
           must be prefixed by **/v1**;;;
           For example, the url of the login request ( {{/auth/login:get-auth-login}} ) is */v1/auth/login*
     -
-      Secutity:
+      Security:
         text: |
           The API handle two type of authorization. To know which one you have to implement for a request,
           look at the request TAGs (top-right coner of the request description).
@@ -78,11 +78,11 @@ api:
                   -
                     200:
                       description: Operation Success
-                      type: object-access-token-reply
+                      type: Access Token Reply
                 errors:
-                  - error-invalid-request
-                  - error-client-auth
-                  - error-fb-invalid-token
+                  - Invalid Request
+                  - Client Auth
+                  - Fb Invalid Token
 
           -
             /auth/token:
@@ -95,11 +95,11 @@ api:
                   -
                     200:
                       description: Valid token
-                      type: object-token-information-reply
+                      type: Token Information Reply
                 errors:
-                  - error-user-auth
-                  - error-expired-token
-                  - error-wrong-token
+                  - User Auth
+                  - Expired Token
+                  - Wrong Token
 
           -
             /auth/renew:
@@ -119,11 +119,11 @@ api:
                   -
                     200:
                       description: Operation sucess
-                      type: object-access-token-reply
+                      type: Access Token Reply
                 errors:
-                  - error-invalid-request
-                  - error-client-auth
-                  - error-wrong-token
+                  - Invalid Request
+                  - Client Auth
+                  - Wrong Token
 
           -
             /auth/facebooktoken:
@@ -136,9 +136,9 @@ api:
                       description: Operation success
                       type: string
                 errors:
-                  - error-user-auth
-                  - error-expired-token
-                  - error-wrong-token
+                  - User Auth
+                  - Expired Token
+                  - Wrong Token
                 tags:
                   - User Auth
 
@@ -158,9 +158,9 @@ api:
                       type: string
 
                 errors:
-                  - error-user-auth
-                  - error-expired-token
-                  - error-wrong-token
+                  - User Auth
+                  - Expired Token
+                  - Wrong Token
 
 
 
@@ -193,10 +193,10 @@ api:
                   -
                     200:
                       description: Client created
-                      type: object-client
+                      type: Client
                 errors:
-                  - error-invalid-client
-                  - error-client-auth
+                  - Invalid Client
+                  - Client Auth
 
     -
       User:
@@ -210,11 +210,11 @@ api:
                   -
                     200:
                       description: User information issued
-                      type: object-user-info
+                      type: User Info
                 errors:
-                  - error-user-auth
-                  - error-expired-token
-                  - error-wrong-token
+                  - User Auth
+                  - Expired Token
+                  - Wrong Token
                 tags:
                   - User Auth
 
@@ -226,11 +226,11 @@ api:
                   -
                     200:
                       description: User information issued
-                      type: object-friend-list
+                      type: Friend List
                 errors:
-                  - error-user-auth
-                  - error-expired-token
-                  - error-wrong-token
+                  - User Auth
+                  - Expired Token
+                  - Wrong Token
                 tags:
                   - User Auth
 
@@ -243,7 +243,7 @@ api:
             -
               200:
                 description: Server is running
-                type: string
+                type: none
 
             -
               400:
@@ -272,6 +272,13 @@ api:
         subcode: 2
         message: Request need to be authorized by User Auth (check documentation for more details)
         fix: See {{User Auth paragraph:paragraphs-security-user-auth}}
+
+    -
+      Invalid client:
+        status: 401
+        code: 2
+        message: Client cannot perform this action
+        fix: Read documentation twice
 
     -
       Expired token:
@@ -370,3 +377,12 @@ api:
               firstName: ""
               lastName: ""
               name: ""
+
+
+    -
+      Client:
+        description: Client information
+        obj:
+          name: ""
+          key: ""
+          secret: ""

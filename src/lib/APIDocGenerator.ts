@@ -26,12 +26,25 @@ export class APIDocGenerator {
     DefinitionValidator.validate(def);
 
 
-    this._changelog = new Changelog(changelog);
-    this._definition = new APIDefinition(def);
-    this.generate(version);
+    console.log("Parsing changelog ...");
+    this._changelog = new Changelog();
+    this._changelog.parse(changelog);
+    console.log("Done");
+    
+    console.log("Parsing api definition ...");
+    this._definition = new APIDefinition();
+    this._definition.parse(def);
+    console.log("Done");
   }
 
-  private generate(version: string): void {
+  public preprocess() {
+
+    console.log("Pre-processing api definition ...");
+    this._definition.preprocess();
+    console.log("Done");
+  }
+
+  public generate(version: string): void {
 
     this._versionFileStr = VersionFileGenerator.generate(this._changelog);
     this._rootFileStr = RootFileGenerator.generate(this._definition, this._changelog);

@@ -9,8 +9,8 @@ export default class DefinitionFileGenerator {
 
   public static generate(def: APIDefinition, changelog: Changelog, version: string): string {
 
-    const apiSymbols: string[] = def.getDeclaredSymbols();
-    const depSymbols: string[] = def.getDependenceSymbol();
+    /*const apiSymbols: string[] = def.getDeclaredSymbols();
+    const depSymbols: string[] = def.getDependencySymbol();
 
     if (!DefinitionFileGenerator.checkSymbolDependency(apiSymbols, depSymbols)) {
       throw new Error("Invalid symbols");
@@ -22,8 +22,9 @@ export default class DefinitionFileGenerator {
       version: version,
       api: def,
       changelog: changelog
-    }));
+    }));*/
 
+    return "";
   }
 
   private static checkSymbolDependency(apiSymbol: string[], depSymbol: string[]): boolean {

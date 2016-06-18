@@ -3,6 +3,8 @@
 import Parameter from "./parameter";
 import Response from "./response";
 import { IDefinition } from "./IDefinition";
+import Symbol from "../../preprocessing/symbol";
+import TextFormatter from "../../preprocessing/textFromatter";
 
 export default class Method implements IDefinition {
 
@@ -77,21 +79,41 @@ export default class Method implements IDefinition {
     return symbols;
   };
 
-  public getDependenceSymbol(): string[] {
-    let symbols: string[] = [];
+  public getDependencySymbol(stack: string[]): Symbol[] {
+    let symbols: Symbol[] = [];
+    let nStack: string[] = [];
+    nStack.push(...stack);
+    nStack.push(this._meth);
+
 
     this._parameters.forEach(function(elem: Parameter): void {
-      symbols.push(...elem.getDependenceSymbol());
+      symbols.push(...elem.getDependencySymbol(nStack));
     });
 
     this._responses.forEach(function(elem: Response): void {
-      symbols.push(...elem.getDependenceSymbol());
+      symbols.push(...elem.getDependencySymbol(nStack));
     });
 
-    symbols.push(...this._errors);
+    this._errors.forEach(function (elem: string): void {
+      symbols.push(new Symbol(elem, nStack));
+    });
 
     return symbols;
   };
+
+  public formatText(): void {
+    this._summary = TextFormatter.format(this._summary);
+    if (this._description != undefined) {
+      this._description = TextFormatter.format(this._description);
+    }
+    this._parameters.forEach(function (elem: Parameter): void {
+      elem.formatText();
+    });
+
+    this._responses.forEach(function (elem: Response): void {
+      elem.formatText();
+    });
+  }
 
   public print(align: number): void {
     let space: string = "";
@@ -137,7 +159,7 @@ export default class Method implements IDefinition {
 
     if (method.errors !== undefined) {
       method.errors.forEach(function(elem: string): void {
-        this._errors.push(elem);
+        this._errors.push("error-" + elem.toLowerCase().replace(/ /g, "-"));
       }, this);
     }
   }

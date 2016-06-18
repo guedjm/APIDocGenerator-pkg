@@ -1,6 +1,8 @@
 "use strict";
 
 import { IDefinition } from "./IDefinition";
+import Symbol from "../../preprocessing/symbol";
+import TextFormatter from "../../preprocessing/textFromatter";
 
 export default class APIObject implements IDefinition {
 
@@ -37,8 +39,12 @@ export default class APIObject implements IDefinition {
     return [this._id];
   }
 
-  public getDependenceSymbol(): string[] {
+  public getDependencySymbol(stack: string[]): Symbol[] {
     return [];
+  }
+
+  public formatText(): void {
+    this._description = TextFormatter.format(this._description);
   }
 
   public print(): void {

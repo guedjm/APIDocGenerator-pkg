@@ -1,6 +1,8 @@
 "use strict";
 
 import { IDefinition } from "./IDefinition";
+import Symbol from "../../preprocessing/symbol";
+import TextFormatter from "../../preprocessing/textFromatter";
 
 export default class Response implements IDefinition {
 
@@ -37,13 +39,17 @@ export default class Response implements IDefinition {
     return [this._id];
   }
 
-  public getDependenceSymbol(): string[] {
-    const basicType: string[] = ["int", "string"];
+  public getDependencySymbol(stack: string[]): Symbol[] {
+    const basicType: string[] = ["int", "string", "none"];
 
     if (basicType.indexOf(this._type) === -1) {
-      return [this._type];
+      return [ new Symbol("object-" + this._type.toLowerCase().replace(/ /g, "-"), stack)];
     }
     return [];
+  }
+
+  public formatText(): void {
+    this._description = TextFormatter.format(this._description);
   }
 
   public print(align: number): void {

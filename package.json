@@ -17,7 +17,7 @@
     "html": "0.0.10",
     "is-my-json-valid": "^2.13.1",
     "jade": "^1.11.0",
-    "markdown": "^0.5.0",
+    "markdown-it": "^6.0.5",
     "yamljs": "^0.2.7"
   },
   "devDependencies": {

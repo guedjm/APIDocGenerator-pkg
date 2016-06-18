@@ -7,27 +7,11 @@ export default class Changelog {
 
   private _changes: ChangeDescription[];
 
-  public constructor(mdText: string) {
+  public constructor() {
     this._changes = [];
-    this.parse(mdText);
   }
 
-  get changes(): ChangeDescription[] {
-    return this._changes;
-  }
-
-  public print(): void {
-    this._changes.forEach(function(elem: ChangeDescription): void {
-      console.log(elem.version + " :");
-      elem.changes.forEach(function(e: string): void {
-        console.log(" o " + e);
-      });
-      console.log("By " + elem.author + " the " + elem.date);
-      console.log("");
-    });
-  }
-
-  private parse(mdText: string): void {
+  public parse(mdText: string): void {
     let version: string;
     let changes: string[];
     let author: string;
@@ -68,4 +52,21 @@ export default class Changelog {
       }
     }, this);
   }
+
+  get changes(): ChangeDescription[] {
+    return this._changes;
+  }
+
+  public print(): void {
+    this._changes.forEach(function(elem: ChangeDescription): void {
+      console.log(elem.version + " :");
+      elem.changes.forEach(function(e: string): void {
+        console.log(" o " + e);
+      });
+      console.log("By " + elem.author + " the " + elem.date);
+      console.log("");
+    });
+  }
+
+
 }

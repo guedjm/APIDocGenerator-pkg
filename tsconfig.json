@@ -35,6 +35,8 @@
     "./src/lib/model/definition/response.ts",
     "./src/lib/model/definition/apiError.ts",
     "./src/lib/model/definition/apiObject.ts",
+    "./src/lib/preprocessing/symbol.ts",
+    "./src/lib/preprocessing/textFromatter.ts",
 
     "./typings/index.d.ts"
   ]

@@ -2,6 +2,7 @@
 
 import Method from "./method";
 import { IDefinition } from "./IDefinition";
+import Symbol from "../../preprocessing/symbol";
 
 export default class Url implements IDefinition {
 
@@ -26,7 +27,7 @@ export default class Url implements IDefinition {
     if (base === undefined || base === "") {
       base = "routes";
     }
-    this._id = `${base}${this.url.replace("/", "-")}`.toLowerCase();
+    this._id = `${base}${this.url.toLowerCase().replace(/\//g, "-")}`;
 
     if (this._get !== undefined) {
       this._get.buildId(this._id);
@@ -77,30 +78,56 @@ export default class Url implements IDefinition {
     return symbols;
   }
 
-  public getDependenceSymbol(): string[] {
-    let symbols: string[] = [];
+  public getDependencySymbol(stack: string[]): Symbol[] {
+    let symbols: Symbol[] = [];
+    let nStack: string[] = [];
+    nStack.push(...stack);
+    nStack.push(this._url);
 
     if (this._get !== undefined) {
-      symbols.push(...this._get.getDependenceSymbol());
+      symbols.push(...this._get.getDependencySymbol(nStack));
     }
 
     if (this._post !== undefined) {
-      symbols.push(...this._post.getDependenceSymbol());
+      symbols.push(...this._post.getDependencySymbol(nStack));
     }
 
     if (this._patch !== undefined) {
-      symbols.push(...this._patch.getDependenceSymbol());
+      symbols.push(...this._patch.getDependencySymbol(nStack));
     }
 
     if (this._put !== undefined) {
-      symbols.push(...this._put.getDependenceSymbol());
+      symbols.push(...this._put.getDependencySymbol(nStack));
     }
 
     if (this._delete !== undefined) {
-      symbols.push(...this._delete.getDependenceSymbol());
+      symbols.push(...this._delete.getDependencySymbol(nStack));
     }
 
     return symbols;
+  }
+
+  public formatText(): void {
+
+    if (this._get != undefined) {
+      this._get.formatText();
+    }
+
+    if (this._post != undefined) {
+      this._post.formatText();
+    }
+
+    if (this._patch != undefined) {
+      this._patch.formatText();
+    }
+
+    if (this._put != undefined) {
+      this._put.formatText();
+    }
+
+    if (this._delete != undefined) {
+      this._delete.formatText();
+    }
   }
 
   public print(align: number): void {

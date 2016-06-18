@@ -2,6 +2,8 @@
 
 import Url from "./url";
 import { IDefinition } from "./IDefinition";
+import Symbol from "../../preprocessing/symbol";
+import TextFormatter from "../../preprocessing/textFromatter";
 
 export default class Group implements IDefinition {
 
@@ -25,7 +27,7 @@ export default class Group implements IDefinition {
     if (base === undefined || base === "") {
       base = "routes";
     }
-    this._id = `${base}-${this._title}`.toLowerCase();
+    this._id = `${base}-${this._title.toLowerCase()}`;
 
     this._sub.forEach(function(elem: Group): void {
       elem.buildId(this._id);
@@ -51,18 +53,33 @@ export default class Group implements IDefinition {
     return symbols;
   }
 
-  public getDependenceSymbol(): string[] {
-    let symbols: string[] = [];
+  public getDependencySymbol(stack: string[]): Symbol[] {
+    let symbols: Symbol[] = [];
+    let nStack: string[] = [];
+    nStack.push(...stack);
+    nStack.push(this._title);
 
     this._sub.forEach(function(elem: Group): void {
-      symbols.push(...elem.getDependenceSymbol());
+      symbols.push(...elem.getDependencySymbol(nStack));
     });
 
     this._url.forEach(function(elem: Url): void {
-      symbols.push(...elem.getDependenceSymbol());
+      symbols.push(...elem.getDependencySymbol(nStack));
     });
 
     return symbols;
+  }
+
+  public formatText(): void {
+    this._text = TextFormatter.format(this._text);
+
+    this._sub.forEach(function (elem: Group): void {
+      elem.formatText();
+    });
+
+    this._url.forEach(function (elem: Url): void {
+      elem.formatText();
+    });
   }
 
   public print(align: number): void {

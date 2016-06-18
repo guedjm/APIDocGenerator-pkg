@@ -1,5 +1,7 @@
 "use strict";
 
+import Symbol from "../../preprocessing/symbol";
+
 export default class Tag {
 
   private _name: string;
@@ -21,8 +23,8 @@ export default class Tag {
     return this._link;
   }
 
-  public getDependenceSymbol(): string[] {
-    return [this._link];
+  public getDependencySymbol(stack: string[]): Symbol[] {
+    return [new Symbol(this._link, stack)];
   }
 
   private parse(tag: any): void {
