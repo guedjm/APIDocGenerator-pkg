@@ -9,7 +9,7 @@ export default class DefinitionValidator {
 
 
     try {
-      const validatorFile: any = JSON.parse(fs.readFileSync("./ressources/schemas/full.json", { encoding: "utf8" }));
+      const validatorFile: any = JSON.parse(fs.readFileSync(__dirname + "/../../resources/schemas/full.json", { encoding: "utf8" }));
       const validateFunc: any = validator(validatorFile, { verbose: true, greedy: true });
       const result: boolean = validateFunc(defintion);
 

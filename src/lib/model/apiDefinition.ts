@@ -109,7 +109,7 @@ export default class APIDefintion {
   public generateRootFile(changelog: Changelog): GeneratedFile {
 
     return new GeneratedFile("/index.html",
-      html.prettyPrint(jade.renderFile("./ressources/view/root.jade", {
+      html.prettyPrint(jade.renderFile("./resources/view/root.jade", {
         name: this.name,
         description: this.description,
         versions: changelog.changes
@@ -119,7 +119,7 @@ export default class APIDefintion {
   public generateDefinitionFile(changelog: Changelog, version: string): GeneratedFile {
 
     return new GeneratedFile(`/${version}/index.html`,
-      html.prettyPrint(jade.renderFile("./ressources/view/index.jade", {
+      html.prettyPrint(jade.renderFile("./resources/view/index.jade", {
         version: version,
         changelog: changelog,
         api: this
