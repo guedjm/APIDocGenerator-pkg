@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+* Add copy of yaml definition file to generated version directory
+
+*guedj_m, Sun Jun 19 2016 12:58:19 GMT+0200 (CEST)*
+
+---
 ## 1.1.0
 
 * Fix package path

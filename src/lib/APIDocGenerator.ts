@@ -12,12 +12,14 @@ import {statSync, readdirSync, readFileSync, Stats} from "fs";
  */
 export class APIDocGenerator {
 
+  private _defStr: string;
   private _definition: APIDefinition;
   private _changelog: Changelog;
   private _generatedFile: GeneratedFile[];
 
   public load(definition: string, changelog: string): void {
 
+    this._defStr = definition;
     const def: any = YamlParser.parse(definition);
 
     DefinitionValidator.validate(def);
@@ -44,6 +46,7 @@ export class APIDocGenerator {
   public generate(version: string): GeneratedFile[] {
 
     this._generatedFile = [];
+    this._generatedFile.push(new GeneratedFile(`/${version}/def.yaml`, this._defStr));
     this._generatedFile.push(this._changelog.generateVersionFile());
     this._generatedFile.push(this._definition.generateRootFile(this._changelog));
     this._generatedFile.push(this._definition.generateDefinitionFile(this._changelog, version));
