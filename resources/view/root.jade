@@ -7,8 +7,14 @@ html
         link(rel="stylesheet" type="text/css" href="./css/uber-font.css")
         link(rel="stylesheet" type="text/css" href="./css/style.css")
 
-        script(src="./js/jquery-1.12.0.min.js")
-        script(src="./js/bootstrap.min.js")
+        script(type="text/javascript" src="./js/jquery-1.12.0.min.js")
+        script(type="text/javascript" src="./js/bootstrap.min.js")
+        script(type="text/javascript" src="./js/doc.js")
+
+        script(type="text/javascript").
+            $(document).ready(function() {
+                loadVersionListRoot();
+            });
 
     body
         header(class="header")
@@ -19,21 +25,8 @@ html
         div(class="container")
             div(class="page_content")
               div(class="row")
-                div(class="col-sm-3 border-right section-left")
-                    div(class="sidebar-nav")
-                        div(class="bloc")
-                          h4 Documentation List
-                          ul(id="version_list")
-                            - var i = 0;
-                            each version in versions
-                              li
-                                a(href="./" + version.version + "/index.html") V !{version.version}
-                                  if i == 0
-                                    span(class="glyphicon glyphicon-arrow-left" style="margin-left: 5px")
-                                    
-                              - i++;
                             
-                div(class="col-sm-9 border-left section-right")
+                div(class="col-sm-12")
                   div(class="doc-content")
                     div(class="part")
                         h1 !{name}
@@ -47,11 +40,4 @@ html
                         hr
 
                         div(id="versions" class="paragraph-header")
-                            each version in versions
-                                div(class="big_part")
-                                    h2
-                                      a(href="./" + version.version + "/index.html") V !{version.version}
-                                    ul
-                                      each change in version.changes
-                                        li !{change}
-                                    i by !{version.author}, !{version.date}
+                            img(src="./img/Preloader_21.gif")

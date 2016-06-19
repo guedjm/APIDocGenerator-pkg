@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0
+
+* Remove left panel on root page
+* Add ajax call to load version history
+* Add animation before loading version with ajax
+
+*guedj_m, Sun Jun 19 2016 13:27:00 GMT+0200 (CEST)*
+
+---
 ## 1.2.0
 
 * Add copy of yaml definition file to generated version directory

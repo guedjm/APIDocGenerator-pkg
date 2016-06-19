@@ -57,3 +57,34 @@ function docLoadVersions() {
 
   });
 }
+
+function loadVersionListRoot() {
+    $.get("./.version.json", function (data) {
+
+        var versionHistory = data;
+        var versionDiv = $("#version");
+        versionDiv.innerHTML = "";
+
+        versionHistory.foreach(function (version) {
+
+            var versionBlock =
+                '<div class="big_part">' +
+                    '<h2><a href="./' + version.version + '/index.html">V ' + version.version + '</a></h2>' +
+                    '<ul>';
+
+            version.changes.forEach(function (change) {
+                versionBlock += '<li>' + change + '</li>';
+            });
+
+            versionBlock += '</ul>' +
+                    '<i> by ' + version.author + ', ' + version.date + '</i>' +
+                    '</div>';
+
+            versionDiv.append(versionBlock);
+        });
+
+
+    });
+}
+
+window.onComplete()
