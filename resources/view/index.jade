@@ -13,6 +13,9 @@ html
         script(src="../js/doc.js")
         script.
             var cV = "#{version}";
+            $(document).ready(function () {
+                setTimeout(loadVersions, 500);
+            });
 
     body
         header(class="header")
