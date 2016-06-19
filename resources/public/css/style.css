@@ -33,6 +33,10 @@ a {
     font-style: italic;
 }
 
+.page-layout {
+    padding-bottom: 50px;
+}
+
 .page_content {
     margin-top: 30px;
     padding: 30px;
