@@ -13,7 +13,7 @@ html
 
         script(type="text/javascript").
             $(document).ready(function() {
-                loadVersionListRoot();
+                setTimeout(loadVersionListRoot, 500);
             });
 
     body
@@ -40,4 +40,5 @@ html
                         hr
 
                         div(id="versions" class="paragraph-header")
-                            img(src="./img/Preloader_21.gif")
+                            center
+                                img(src="./img/Preloader_21.gif" style="margin-top: 50px")
