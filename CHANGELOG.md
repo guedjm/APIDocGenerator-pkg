@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0
+
+* Fix the new version every thing ok
+
+*guedj_m, Sun Jun 19 2016 17:42:41 GMT+0200 (CEST)*
+
+---
 ## 1.4.0
 
 * Static html file aren't copied

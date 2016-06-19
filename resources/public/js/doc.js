@@ -3,10 +3,10 @@ function loadVersionListRoot() {
     $.get("./.version.json", function (data) {
 
         var versionHistory = data;
-        var versionDiv = $("#version");
-        versionDiv.innerHTML = "";
+        var versionDiv = $("#versions");
+        versionDiv.eq(0).html("");
 
-        versionHistory.foreach(function (version) {
+        versionHistory.forEach(function (version) {
 
             var versionBlock =
                 '<div class="big_part">' +
@@ -34,9 +34,8 @@ function loadVersions() {
 
         var versionHistory = data;
         var versionList = $("#versionList");
-        versionList.innerHTML = "";
 
-        versionHistory.foreach(function (version, i) {
+        versionHistory.forEach(function (version, i) {
 
             var versionLi = '<li><a href="../' + version.version + '/index.html">';
             if (version.version == cV)
