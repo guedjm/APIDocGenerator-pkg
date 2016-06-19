@@ -11,9 +11,10 @@ mixin version(v, index, version)
             if (index == 0)
                 span(class="glyphicon glyphicon-arrow-left" style="margin-left: 5px")
 
+div(class="bloc")
+    a(href="#changelog") CHANGELOG
+
 div(class="bloc" id="versionBlk")
     a(href="#versions") VERSIONS
 
-    ul
-        each val, index in changelog.changes
-            +version(val, index, version)
+    ul(id="versionList")

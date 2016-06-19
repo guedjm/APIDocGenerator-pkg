@@ -86,3 +86,32 @@ function loadVersionListRoot() {
 
     });
 }
+
+function loadVersions() {
+
+    $.get("../.version.json", function (data) {
+
+        var versionHistory = data;
+        var versionList = $("#versionList");
+        versionList.innerHTML = "";
+
+        versionHistory.foreach(function (version, i) {
+
+            var versionLi = '<li><a href="../' + version.version + '/index.html">';
+            if (version.version == cV)
+                versionLi += "<b>";
+
+            versionLi += "v" + version.version;
+
+            if (i == 0)
+                versionLi += '<span class="glyphicon glyphicon-arrow-left"></span>';
+
+            if (version.version == cV)
+                versionLi += "</b>";
+
+            versionLi += "</a></li>";
+
+            versionList.append(versionLi);
+        });
+    });
+}

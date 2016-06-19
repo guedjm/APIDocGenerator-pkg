@@ -12,7 +12,7 @@ html
         script(src="../js/bootstrap.min.js")
         script(src="../js/doc.js")
         script.
-            var version = "#{version}";
+            var cV = "#{version}";
 
     body
         header(class="header")
@@ -40,11 +40,11 @@ html
 
                         div(class="doc-content")
 
-                            include ./content/paragraph.jade
-                            include ./content/route.jade
-                            include ./content/object.jade
-                            include ./content/error.jade
-                            include ./content/version.jade
+                            include ./content/paragraph
+                            include ./content/route
+                            include ./content/object
+                            include ./content/error
+                            include ./content/changelog
 
 
 
