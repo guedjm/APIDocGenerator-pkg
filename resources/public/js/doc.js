@@ -86,5 +86,3 @@ function loadVersionListRoot() {
 
     });
 }
-
-window.onComplete()

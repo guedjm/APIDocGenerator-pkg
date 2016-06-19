@@ -5,7 +5,6 @@ import YamlParser from "./utils/yamlParser";
 import APIDefinition from "./model/apiDefinition";
 import DefinitionValidator from "./utils/definitionValidator";
 import { GeneratedFile } from "./model/generatedFile";
-import {statSync, readdirSync, readFileSync, Stats} from "fs";
 
 /**
  * APIDocGenerator
@@ -51,24 +50,10 @@ export class APIDocGenerator {
     this._generatedFile.push(this._definition.generateRootFile(this._changelog));
     this._generatedFile.push(this._definition.generateDefinitionFile(this._changelog, version));
 
-    this.copySourceDir(__dirname + "/../resources/public/", "");
-
     return this._generatedFile;
   }
 
-  private copySourceDir(basePath: string, path: string): void {
-
-    const ls: string[] = readdirSync(basePath + path);
-    ls.forEach(function(elem: string): void {
-
-      const stat: Stats = statSync(basePath + path + elem);
-      if (stat.isDirectory()) {
-        this.copySourceDir(basePath, path + "/" + elem + "/");
-      }
-      else if (stat.isFile()) {
-        this._generatedFile.push(new GeneratedFile(path + elem, readFileSync(basePath + path + "/" + elem, "utf8")));
-      }
-    }, this);
+  public get publicDir(): string {
+    return __dirname + "/../resources/public/";
   }
-
 }

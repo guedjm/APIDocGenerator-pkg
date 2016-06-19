@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0
+
+* Static html file aren't copied
+
+*guedj_m, Sun Jun 19 2016 13:36:12 GMT+0200 (CEST)*
+
+---
 ## 1.3.0
 
 * Remove left panel on root page
