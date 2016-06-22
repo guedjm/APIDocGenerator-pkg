@@ -32,7 +32,7 @@ mixin url(u)
                 a(href="##{u.post.id}")
                     span(class="label label-success") POST
 
-            td(class="slidebar-nav-url")
+            td(class="sidebar-nav-url")
                 a(href="##{u.post.id}") !{u.url}
 
     if u.patch
@@ -41,7 +41,7 @@ mixin url(u)
                 a(href="##{u.patch.id}")
                     span(class="label label-warning") PATCH
 
-            td(class="slidebar-nav-url")
+            td(class="sidebar-nav-url")
                 a(href="##{u.patch.id}") !{u.url}
 
     if u.put
@@ -50,7 +50,7 @@ mixin url(u)
                 a(href="##{u.put.id}")
                     span(class="label label-info") PUT
 
-            td(class="slidebar-nav-url")
+            td(class="sidebar-nav-url")
                 a(href="##{u.put.id}") !{u.url}
 
     if u.delete
@@ -59,7 +59,7 @@ mixin url(u)
                 a(href="##{u.get.id}")
                     span(class="label label-danger") DELETE
 
-            td(class="slidebar-nav-url")
+            td(class="sidebar-nav-url")
                 a(href="##{u.delete.id}") !{u.url}
 
 
