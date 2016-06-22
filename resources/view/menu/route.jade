@@ -72,12 +72,8 @@ div(class="bloc")
             if (route.title !== undefined)
                 +group(route)
 
-        each route in api.routes
-            if (route.title === undefined)
-                if (first)
-                    table
-                        tbody
-                            - first = false
-                            +url(route)
-                else
-                            +url(route)
+        table
+            tbody
+                each route in api.routes
+                    if (route.title === undefined)
+                        +url(route)
