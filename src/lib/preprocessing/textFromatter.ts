@@ -10,12 +10,12 @@ export default class TextFormatter {
 
     text = text.replace(/;;;/g, "<br/>");
 
-    const links: string[] = text.match(/{{[a-zA-Z1-9 -_\/]*:[a-zA-Z1-9 -_\/]*}}/g);
+    const links: string[] = text.match(/{{[a-zA-Z1-9 -_\/]*![a-zA-Z1-9 -_\/]*}}/g);
 
     if (links) {
 
       links.forEach(function(elem: string): void {
-        const sp: string[] = elem.split(":");
+        const sp: string[] = elem.split("!");
         const linkTxt: string = sp[0].replace(/{{/g, "");
         let linkValue: string = sp[1].replace(/}}/g, "");
 
