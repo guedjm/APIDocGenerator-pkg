@@ -47,12 +47,11 @@ export default class APIDefintion {
     }, this);
 
 
-    if (definition.api.tags === undefined) {
-      throw new Error("Invalid definition: Missing tag definition");
+    if (definition.api.tags !== undefined) {
+      definition.api.tags.forEach(function(elem: any): void {
+        this._tags.push(new Tag(elem));
+      }, this);
     }
-    definition.api.tags.forEach(function(elem: any): void {
-      this._tags.push(new Tag(elem));
-    }, this);
 
 
     if (definition.api.routes === undefined) {

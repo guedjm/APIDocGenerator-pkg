@@ -1,0 +1,33 @@
+import Tag from "./definition/tag";
+import Paragraph from "./definition/paragraph";
+import APIError from "./definition/apiError";
+import APIObject from "./definition/apiObject";
+import { IDefinition } from "./definition/IDefinition";
+import Changelog from "./changelog";
+import { GeneratedFile } from "./generatedFile";
+export default class APIDefintion {
+    private _name;
+    private _description;
+    private _paragraphs;
+    private _tags;
+    private _routes;
+    private _errors;
+    private _objects;
+    constructor();
+    parse(definition: any): void;
+    preprocess(): void;
+    generateRootFile(changelog: Changelog): GeneratedFile;
+    generateDefinitionFile(changelog: Changelog, version: string): GeneratedFile;
+    getTagInfo(tag: string): any;
+    getObjectInfo(object: string): any;
+    getErrorInfo(error: string): APIError;
+    name: string;
+    description: string;
+    paragraphs: Paragraph[];
+    tags: Tag[];
+    routes: IDefinition[];
+    objects: APIObject[];
+    errors: APIError[];
+    private getDeclaredSymbols();
+    private getDependencySymbol();
+}
