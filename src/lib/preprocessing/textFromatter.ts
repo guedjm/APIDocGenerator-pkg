@@ -19,7 +19,7 @@ export default class TextFormatter {
         const linkTxt: string = sp[0].replace(/{{/g, "");
         let linkValue: string = sp[1].replace(/}}/g, "");
 
-        if (linkValue.indexOf("http://") !== 0) {
+        if (linkValue.indexOf("http://") !== 0 && linkValue.indexOf("https://") !== 0) {
           linkValue = `#${linkValue}`;
         }
 
