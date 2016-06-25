@@ -10,7 +10,7 @@ export default class TextFormatter {
 
     text = text.replace(/;;;/g, "<br/>");
 
-    const links: string[] = text.match(/{{[a-zA-Z1-9 -_\/]*![a-zA-Z1-9 -_\/]*}}/g);
+    const links: string[] = text.match(/{{[a-zA-Z1-9 -_\/:]*![a-zA-Z1-9 -_\/:]*}}/g);
 
     if (links) {
 
